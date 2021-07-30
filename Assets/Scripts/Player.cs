@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Update is called once per frame
+    Animator animator;
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
     void Update()
     {
         Vector3 move = Vector3.zero;
@@ -18,6 +22,14 @@ public class Player : MonoBehaviour
             transform.Translate(move * speed * Time.deltaTime, Space.World);
             transform.forward = move;
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            animator.Play("Shoot");
+            Instantiate(bullet, bulletPosition.position, transform.rotation);
+        }
     }
     public float speed = 5;
+    public GameObject bullet;
+    public Transform bulletPosition;
 }
