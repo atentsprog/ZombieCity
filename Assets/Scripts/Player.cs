@@ -22,14 +22,57 @@ public class Player : MonoBehaviour
             transform.Translate(move * speed * Time.deltaTime, Space.World);
             transform.forward = move;
         }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            animator.Play("Shoot");
-            Instantiate(bullet, bulletPosition.position, transform.rotation);
-        }
+        Shoot();
+        animator.SetFloat("Speed", move.sqrMagnitude);
     }
     public float speed = 5;
+
+
     public GameObject bullet;
     public Transform bulletPosition;
+
+
+    float shootDelayEndTime;
+    void Shoot()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (shootDelayEndTime < Time.time)
+            {
+                animator.SetBool("Shooting", true);
+                shootDelayEndTime = Time.time + shootDelay;
+                IncreaseRecoil();
+                Instantiate(bullet, bulletPosition.position, CalculateRecoil(transform.rotation));
+            }
+        }
+        else
+        {
+            animator.SetBool("Shooting", false);
+            DecreaseRecoil();
+        }
+    }
+
+
+
+    float recoilValue = 0f;
+    float recoilMaxValue = 1.5f;
+    float recoilLerpValue = 0.1f;
+    void IncreaseRecoil()
+    {
+        recoilValue = Mathf.Lerp(recoilValue, recoilMaxValue, recoilLerpValue);
+    }
+    void DecreaseRecoil()
+    {
+        recoilValue = Mathf.Lerp(recoilValue, 0, recoilLerpValue);
+
+    }
+
+    Vector3 recoil;
+    Quaternion CalculateRecoil(Quaternion rotation)
+    {
+        recoil = new Vector3(Random.Range(-recoilValue, recoilValue), Random.Range(-recoilValue, recoilValue), 0);
+        return Quaternion.Euler(rotation.eulerAngles + recoil);
+    }
+
+    [SerializeField] float shootDelay = 0.05f;
 }
