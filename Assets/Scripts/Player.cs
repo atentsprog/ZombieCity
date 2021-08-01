@@ -9,6 +9,7 @@ public partial class Player : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        bulletLight = GetComponentInChildren<Light>(true).gameObject;
     }
 
     Plane plane = new Plane(new Vector3(0, 1, 0), 0);

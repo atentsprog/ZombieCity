@@ -15,6 +15,7 @@ public partial class Player : MonoBehaviour
         {
             if (shootDelayEndTime < Time.time)
             {
+                StartCoroutine(FlashBulletCo());
                 animator.SetBool("Shooting", true);
                 shootDelayEndTime = Time.time + shootDelay;
                 IncreaseRecoil();
@@ -28,7 +29,14 @@ public partial class Player : MonoBehaviour
         }
     }
 
-
+    GameObject bulletLight;
+    public float bulletFlashTime = 0.001f;
+    private IEnumerator FlashBulletCo()
+    {
+        bulletLight.SetActive(true);
+        yield return new WaitForSeconds(bulletFlashTime);
+        bulletLight.SetActive(false);
+    }
 
     float recoilValue = 0f;
     float recoilMaxValue = 1.5f;
