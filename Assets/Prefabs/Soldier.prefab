@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  speedInFiring: 3.5
   bullet: {fileID: 9021006395178722910, guid: 0b938b7a65c05784aab3c59a0e89f7cc, type: 3}
   bulletPosition: {fileID: 1412539876886591726}
   bulletFlashTime: 0.1

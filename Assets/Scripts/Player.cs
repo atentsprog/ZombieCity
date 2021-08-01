@@ -6,6 +6,7 @@ public partial class Player : MonoBehaviour
 {
     Animator animator;
     public float speed = 5;
+    public float speedInFiring = 2.5f;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -18,11 +19,11 @@ public partial class Player : MonoBehaviour
         if (Time.deltaTime == 0)
             return;
 
+        Fire();
+
         Move();
 
         LookAt();
-
-        Fire();
     }
 
     private void LookAt()
@@ -48,7 +49,8 @@ public partial class Player : MonoBehaviour
         if (move != Vector3.zero)
         {
             move.Normalize();
-            transform.Translate(move * speed * Time.deltaTime, Space.World);
+            float _speed = animator.GetBool("Shooting") ? speedInFiring : speed;
+            transform.Translate(move * _speed * Time.deltaTime, Space.World);
         }
 
         animator.SetFloat("Speed", move.sqrMagnitude);
