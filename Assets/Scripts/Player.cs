@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public partial class Player : MonoBehaviour
 {
     Animator animator;
+    public float speed = 5;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -13,21 +14,24 @@ public class Player : MonoBehaviour
     Plane plane = new Plane(new Vector3(0, 1, 0), 0);
     void Update()
     {
+        if (Time.deltaTime == 0)
+            return;
+
         Move();
 
         LookAt();
 
-        Shoot();
+        Fire();
     }
 
     private void LookAt()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        Vector3 dir = Vector3.zero;
         if (plane.Raycast(ray, out float enter))
         {
             Vector3 hitPoint = ray.GetPoint(enter);
-            Vector3 dir = hitPoint - transform.position;
+            dir = hitPoint - transform.position;
             dir.Normalize();
             transform.forward = dir;
         }
@@ -47,56 +51,19 @@ public class Player : MonoBehaviour
         }
 
         animator.SetFloat("Speed", move.sqrMagnitude);
+
+        Vector2 direction2D = new Vector2(move.x, move.z);
+        float angleY = VectorToDegree(direction2D);
+        var rotation = (Quaternion.Euler(new Vector3(0, angleY, 0)) * Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up)).eulerAngles;
+
+        var rotationY = rotation.y; 
+        float radianX = Mathf.Cos(rotationY * Mathf.Deg2Rad);
+        float radianY = Mathf.Sin(rotationY * Mathf.Deg2Rad);
+        animator.SetFloat("DirX", radianX);
+        animator.SetFloat("DirY", radianY);
     }
+    public static float VectorToDegree(Vector2 vector) { 
+        float radian = Mathf.Atan2(vector.y, vector.x); 
+        return (radian * Mathf.Rad2Deg); }
 
-    public float speed = 5;
-
-
-    public GameObject bullet;
-    public Transform bulletPosition;
-
-
-    float shootDelayEndTime;
-    void Shoot()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            if (shootDelayEndTime < Time.time)
-            {
-                animator.SetBool("Shooting", true);
-                shootDelayEndTime = Time.time + shootDelay;
-                IncreaseRecoil();
-                Instantiate(bullet, bulletPosition.position, CalculateRecoil(transform.rotation));
-            }
-        }
-        else
-        {
-            animator.SetBool("Shooting", false);
-            DecreaseRecoil();
-        }
-    }
-
-
-
-    float recoilValue = 0f;
-    float recoilMaxValue = 1.5f;
-    float recoilLerpValue = 0.1f;
-    void IncreaseRecoil()
-    {
-        recoilValue = Mathf.Lerp(recoilValue, recoilMaxValue, recoilLerpValue);
-    }
-    void DecreaseRecoil()
-    {
-        recoilValue = Mathf.Lerp(recoilValue, 0, recoilLerpValue);
-
-    }
-
-    Vector3 recoil;
-    Quaternion CalculateRecoil(Quaternion rotation)
-    {
-        recoil = new Vector3(Random.Range(-recoilValue, recoilValue), Random.Range(-recoilValue, recoilValue), 0);
-        return Quaternion.Euler(rotation.eulerAngles + recoil);
-    }
-
-    [SerializeField] float shootDelay = 0.05f;
 }
