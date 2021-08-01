@@ -49,7 +49,7 @@ public partial class Player : MonoBehaviour
         if (move != Vector3.zero)
         {
             move.Normalize();
-            float _speed = animator.GetBool("Shooting") ? speedInFiring : speed;
+            float _speed = animator.GetBool("Firing") ? speedInFiring : speed;
             transform.Translate(move * _speed * Time.deltaTime, Space.World);
         }
 

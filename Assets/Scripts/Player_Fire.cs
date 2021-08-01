@@ -16,7 +16,7 @@ public partial class Player : MonoBehaviour
             if (shootDelayEndTime < Time.time)
             {
                 StartCoroutine(FlashBulletCo());
-                animator.SetBool("Shooting", true);
+                animator.SetBool("Firing", true);
                 shootDelayEndTime = Time.time + shootDelay;
                 IncreaseRecoil();
                 Instantiate(bullet, bulletPosition.position, CalculateRecoil(transform.rotation));
@@ -24,7 +24,7 @@ public partial class Player : MonoBehaviour
         }
         else
         {
-            animator.SetBool("Shooting", false);
+            animator.SetBool("Firing", false);
             DecreaseRecoil();
         }
     }
