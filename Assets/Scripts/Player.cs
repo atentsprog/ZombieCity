@@ -9,7 +9,31 @@ public class Player : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
     }
+
+    Plane plane = new Plane(new Vector3(0, 1, 0), 0);
     void Update()
+    {
+        Move();
+
+        LookAt();
+
+        Shoot();
+    }
+
+    private void LookAt()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (plane.Raycast(ray, out float enter))
+        {
+            Vector3 hitPoint = ray.GetPoint(enter);
+            Vector3 dir = hitPoint - transform.position;
+            dir.Normalize();
+            transform.forward = dir;
+        }
+    }
+
+    private void Move()
     {
         Vector3 move = Vector3.zero;
         if (Input.GetKey(KeyCode.W)) move.z = 1;
@@ -20,11 +44,11 @@ public class Player : MonoBehaviour
         {
             move.Normalize();
             transform.Translate(move * speed * Time.deltaTime, Space.World);
-            transform.forward = move;
         }
-        Shoot();
+
         animator.SetFloat("Speed", move.sqrMagnitude);
     }
+
     public float speed = 5;
 
 
