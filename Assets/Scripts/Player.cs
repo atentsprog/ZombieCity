@@ -46,9 +46,14 @@ public partial class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) move.x = 1;
         if (move != Vector3.zero)
         {
+            Vector3 relateMove;
+            relateMove = Camera.main.transform.forward * move.z;
+            relateMove += Camera.main.transform.right * move.x;
+            relateMove.y = 0;
+            move = relateMove;
+
             move.Normalize();
             transform.Translate(move * speed * Time.deltaTime, Space.World);
-            //transform.forward = move;
         }
 
 

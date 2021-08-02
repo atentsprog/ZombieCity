@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 115942137398177646}
   m_Layer: 0
   m_Name: Soldier
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6120025990291610022}
-  m_LocalRotation: {x: -0, y: -0.39612806, z: -0, w: 0.91819537}
+  m_LocalRotation: {x: 0, y: -0.39613062, z: 0, w: 0.9181942}
   m_LocalPosition: {x: -17.316, y: 0, z: 5.0198407}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -222,7 +222,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6120025990291610022}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

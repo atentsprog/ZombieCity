@@ -25,12 +25,22 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    public float bloodEffectYPosition = 1.3f;
+    public GameObject bloodParticle;
+    private void CreateBloodEffect()
+    {
+        var pos = transform.position;
+        pos.y = bloodEffectYPosition;
+        Instantiate(bloodParticle, pos, Quaternion.identity);
+    }
+
     internal void TakeHit(int damage, Vector3 toMoveDirection)
     {
         hp -= damage;
         //animator.Play("TakeHit");
         animator.Play(Random.Range(0, 2) == 0 ? "TakeHit1" : "TakeHit2", 0, 0);
         // 피격 이펙트 생성(피,..)
+        CreateBloodEffect();
 
         // 뒤로 밀려나게하자.
         PushBackMove(toMoveDirection);
@@ -46,6 +56,7 @@ public class Zombie : MonoBehaviour
             Invoke(nameof(Die), 1);
         }
     }
+
 
     public float moveBackDistance = 0.1f;
     public float moveBackNoise = 0.1f;
