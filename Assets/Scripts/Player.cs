@@ -28,6 +28,10 @@ public class Player : MonoBehaviour
             animator.Play("Shoot");
             Instantiate(bullet, bulletPosition.position, transform.rotation);
         }
+
+        animator.SetFloat("DirX", move.x);
+        animator.SetFloat("DirY", move.z);
+        animator.SetFloat("Speed", move.sqrMagnitude);
     }
     public float speed = 5;
     public GameObject bullet;
