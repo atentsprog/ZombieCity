@@ -53,7 +53,7 @@ public class Zombie : MonoBehaviour
     public float takeHitEffectsYOffset = 1f;
     private void CreateTakeHitEffect()
     {
-        Instantiate(takeHitEffects, transform.position + new Vector3(0, takeHitEffectsYOffset, 0), Quaternion.identity, transform);
+        Instantiate(takeHitEffects, transform.position + new Vector3(0, takeHitEffectsYOffset, 0), Quaternion.identity);
     }
 
     public float dieDestroyTime = 3;

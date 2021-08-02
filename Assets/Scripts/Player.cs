@@ -55,8 +55,9 @@ public partial class Player : MonoBehaviour
 
         animator.SetFloat("Speed", move.sqrMagnitude);
 
-        Vector2 direction2D = new Vector2(move.x, move.z);
-        float angleY = VectorToDegree(direction2D);
+        //Vector2 direction2D = new Vector2(move.x, move.z);
+        //float angleY = VectorToDegree(direction2D);
+        float angleY = move.VectorToDegree();
         var rotation = (Quaternion.Euler(new Vector3(0, angleY, 0)) * Quaternion.AngleAxis(transform.rotation.eulerAngles.y, Vector3.up)).eulerAngles;
 
         var rotationY = rotation.y; 
@@ -65,8 +66,8 @@ public partial class Player : MonoBehaviour
         animator.SetFloat("DirX", radianX);
         animator.SetFloat("DirY", radianY);
     }
-    public static float VectorToDegree(Vector2 vector) { 
-        float radian = Mathf.Atan2(vector.y, vector.x); 
-        return (radian * Mathf.Rad2Deg); }
+    //public static float VectorToDegree(Vector2 vector) { 
+        //float radian = Mathf.Atan2(vector.y, vector.x); 
+        //return (radian * Mathf.Rad2Deg); }
 
 }
