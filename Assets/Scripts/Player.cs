@@ -48,8 +48,16 @@ public partial class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) move.x = 1;
         if (move != Vector3.zero)
         {
-            move.Normalize();
             float _speed = animator.GetBool("Firing") ? speedInFiring : speed;
+
+            // 카메라 좌표로 벼환.
+            Vector3 moveDirection = Vector3.zero;
+            moveDirection += Camera.main.transform.forward * move.z;
+            moveDirection += Camera.main.transform.right * move.x;
+            moveDirection.y = 0;
+            move = moveDirection;
+
+            move.Normalize();
             transform.Translate(move * _speed * Time.deltaTime, Space.World);
         }
 
