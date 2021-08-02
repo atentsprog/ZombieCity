@@ -8020,7 +8020,7 @@ AnimationClip:
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
     m_StopTime: 0.20000002
-    m_OrientationOffsetY: 4.27
+    m_OrientationOffsetY: -32.52
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
@@ -8029,7 +8029,7 @@ AnimationClip:
     m_LoopBlendOrientation: 1
     m_LoopBlendPositionY: 1
     m_LoopBlendPositionXZ: 1
-    m_KeepOriginalOrientation: 1
+    m_KeepOriginalOrientation: 0
     m_KeepOriginalPositionY: 1
     m_KeepOriginalPositionXZ: 1
     m_HeightFromFeet: 0

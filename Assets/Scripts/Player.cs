@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public partial class Player : MonoBehaviour
 {
     Animator animator;
     private void Awake()
@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        if (Time.deltaTime == 0)
+            return;
+
         LookAtMouse();
         Move();
         Fire();
@@ -32,19 +35,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Fire()
-    {
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            //animator.Play("Shoot");
-            animator.SetBool("Fire", true);
-            Instantiate(bullet, bulletPosition.position, transform.rotation);
-        }
-        else
-        {
-            animator.SetBool("Fire", false);
-        }
-    }
 
     private void Move()
     {
@@ -67,6 +57,4 @@ public class Player : MonoBehaviour
     }
 
     public float speed = 5;
-    public GameObject bullet;
-    public Transform bulletPosition;
 }
