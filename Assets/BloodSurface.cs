@@ -10,10 +10,10 @@ public class BloodSurface : MonoBehaviour
     {
         var ps = other.GetComponent<ParticleSystem>();
         ParticlePhysicsExtensions.GetCollisionEvents(ps, gameObject, collisionEvent);
-        print(collisionEvent.Count);
+        //print(collisionEvent.Count);
         foreach (var item in collisionEvent)
         {
-            print(item.intersection);
+            //print(item.intersection);
             Quaternion rotate = Quaternion.Euler(0, item.velocity.VectorToDegree(), 0);
             Instantiate(groundBlood, item.intersection, rotate);
         }

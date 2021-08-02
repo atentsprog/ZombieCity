@@ -24,15 +24,19 @@ public class Zombie : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(0.5f, 2f));
         }
     }
-    internal void TakeHit(int damage)
+    public float takeHitPushBack = 0.1f;
+    internal void TakeHit(Vector3 attackedDirection, int damage)
     {
         hp -= damage;
-        animator.Play("TakeHit", 0, 0);
+        animator.Play(Random.Range(0, 2)  == 0 ? "TakeHit" : "TakeHit2");
         agent.speed = 0;
         Invoke(nameof(RestoreSpeed), 0.2f);
 
         // 피격 이펙트 생성(피,..)
         CreateTakeHitEffect();
+
+        // 뒤로 밀리게 하자.
+        PushBck(attackedDirection);
 
         if (hp <= 0)
         {
@@ -41,6 +45,16 @@ public class Zombie : MonoBehaviour
             Invoke(nameof(Die), dieAnimationPlayTime);
         }
     }
+
+    private void PushBck(Vector3 attackedDirection)
+    {
+        attackedDirection.y = transform.position.y;
+        attackedDirection.Normalize();
+        agent.enabled = false;
+        transform.Translate(attackedDirection * takeHitPushBack, Space.World);
+        agent.enabled = true;
+    }
+
     public float dieAnimationPlayTime = 0.6f;
 
     float originalMoveSpeed;
