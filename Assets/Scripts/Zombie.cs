@@ -19,13 +19,6 @@ public class Zombie : MonoBehaviour
         target = FindObjectOfType<Player>().transform;  // 
         originalSpeed = agent.speed;
 
-        //while (hp > 0)
-        //{
-        //    if (target)
-        //        agent.destination = target.position;
-        //    yield return new WaitForSeconds(Random.Range(0.5f, 2f));
-        //}
-
         CurrentFsm = ChaseFSM;
 
         while (true) // 상태를 무한히 반복해서 실행하는 부분.
@@ -59,8 +52,41 @@ public class Zombie : MonoBehaviour
         if (target)
             agent.destination = target.position;
         yield return new WaitForSeconds(Random.Range(0.5f, 2f));
-        CurrentFsm = ChaseFSM;
+
+        // 타겟이 공격 범위 안에 들어왔는가?
+        if(TargetIsInAttackArea()) // 들어왔다면
+            CurrentFsm = AttackFSM;
+        else
+            CurrentFsm = ChaseFSM;
     }
+    public float attackDistance = 3;
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
+    }
+    private bool TargetIsInAttackArea()
+    {
+        float distance = Vector3.Distance(transform.position, target.position);
+        return distance < attackDistance;
+    }
+    private IEnumerator AttackFSM()
+    {
+        yield return null;
+        // 타겟 바라보기
+
+        //공격 애니메이션 하기.
+
+        // 이동 스피드 0으로 하기.
+
+        // 특정 시간 지나면 충돌메시 사용해서 충돌 감지하기.
+
+        //애니메이션 끝날때까지 대기
+
+        // 이동스피드 복구
+
+        // FSM지정.
+    }
+
 
     public float bloodEffectYPosition = 1.3f;
     public GameObject bloodParticle;
@@ -74,26 +100,31 @@ public class Zombie : MonoBehaviour
     internal void TakeHit(int damage, Vector3 toMoveDirection)
     {
         hp -= damage;
-        //animator.Play("TakeHit");
+        // 뒤로 밀려나게하자.
+        PushBackMove(toMoveDirection);
+
+        CurrentFsm = TakeHitFSM;
+    }
+    IEnumerator TakeHitFSM()
+    {
         animator.Play(Random.Range(0, 2) == 0 ? "TakeHit1" : "TakeHit2", 0, 0);
         // 피격 이펙트 생성(피,..)
         CreateBloodEffect();
 
-        // 뒤로 밀려나게하자.
-        PushBackMove(toMoveDirection);
-
         // 이동 스피드를 잠시 0으로 만들자.
         agent.speed = 0;
-        CancelInvoke(nameof(SetTakeHitSpeed));
-        Invoke(nameof(SetTakeHitSpeed), TakeHitStopSpeedTime);
+
+        yield return new WaitForSeconds(TakeHitStopSpeedTime);
+        SetOriginalSpeed();
 
         if (hp <= 0)
         {
             GetComponent<Collider>().enabled = false;
-            Invoke(nameof(Die), 1);
+            yield return new WaitForSeconds(1);
+            Die();
         }
+        CurrentFsm = ChaseFSM;
     }
-
 
     public float moveBackDistance = 0.1f;
     public float moveBackNoise = 0.1f;
@@ -107,7 +138,7 @@ public class Zombie : MonoBehaviour
     }
 
     public float TakeHitStopSpeedTime = 0.1f;
-    private void SetTakeHitSpeed()
+    private void SetOriginalSpeed()
     {
         agent.speed = originalSpeed;
     }
