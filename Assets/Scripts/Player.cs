@@ -16,10 +16,13 @@ public partial class Player : MonoBehaviour
         if (Time.deltaTime == 0)
             return;
 
-        LookAtMouse();
-        Move();
-        Fire();
-        Roll();
+        if (stateType != StateType.Roll)
+        {
+            LookAtMouse();
+            Move();
+            Fire();
+            Roll();
+        }
     }
 
     private void Roll()
@@ -29,25 +32,42 @@ public partial class Player : MonoBehaviour
     }
 
     public AnimationCurve rollingSpeedAC;
-    float rollingSpeedMultipy = 1;
+
     public float rollingSpeedUserMultipy = 1;
+
+    public enum StateType
+    {
+        Idle,
+        Move,
+        Attack,
+        TakeHit,
+        Roll,
+        Die,
+    }
+    public StateType stateType = StateType.Idle;
     private IEnumerator RollCo()
     {
+        animator.SetBool("Fire", false);
+        DecreaseRecoil();
+
+        // 회전 방향은 처음 바라보던 방향으로 고정.
+        // 총알 금지. 움직이는거 금지.마우스 바라보는거 금지.
+        stateType = StateType.Roll;
         // 구르는 애니메이션 재생.
         animator.SetTrigger("Roll");
+        // 구르는 동안 이동 스피드를 빠르게 하기.
         float starTime = Time.time;
         float endTime = starTime + rollingSpeedAC[rollingSpeedAC.length - 1].time;
         while(endTime > Time.time)
         {
             float time = Time.time - starTime;
-            rollingSpeedMultipy = rollingSpeedAC.Evaluate(time) * rollingSpeedUserMultipy;
-            print($"{time}:{rollingSpeedMultipy} : {rollingSpeedAC[rollingSpeedAC.length - 1].time}");
+            float rollingSpeedMultipy = rollingSpeedAC.Evaluate(time) * rollingSpeedUserMultipy;
+            //print($"{time}:{rollingSpeedMultipy} : {rollingSpeedAC[rollingSpeedAC.length - 1].time}");
+
+            transform.Translate(transform.forward * speed * rollingSpeedMultipy * Time.deltaTime, Space.World);
             yield return null;
         }
-        rollingSpeedMultipy = 1;
-        // 구르는 동안 이동 스피드를 빠르게 하기.
-        // 회전 방향은 처음 바라보던 방향으로 고정.
-        // 총알 금지. 움직이는거 금지.마우스 바라보는거 금지.
+        stateType = StateType.Idle;
     }
 
     Plane plane = new Plane(new Vector3(0, 1, 0), 0);
@@ -83,7 +103,7 @@ public partial class Player : MonoBehaviour
             move = relateMove;
 
             move.Normalize();
-            transform.Translate(move * speed * rollingSpeedMultipy * Time.deltaTime, Space.World);
+            transform.Translate(move * speed * Time.deltaTime, Space.World);
         }
 
 
