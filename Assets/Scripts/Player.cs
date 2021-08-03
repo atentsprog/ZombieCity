@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class Player : MonoBehaviour
+public partial class Player : Actor
 {
-    Animator animator;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         bulletLight = GetComponentInChildren<Light>(true).gameObject;
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>(true);
     }
     void Update()
     {
@@ -63,4 +63,36 @@ public partial class Player : MonoBehaviour
     }
 
     public float speed = 5;
+
+
+    new public void TakeHit(int damage)
+    {
+        base.TakeHit(damage);
+
+        CreateBloodEffect();
+
+        animator.SetTrigger("TakeHit");
+
+        meshRenderer.material.color = Color.red;
+        Invoke(nameof(SetOriginalColor), takeHitColorChangeTime);
+
+        if( hp <= 0)
+        {
+            SetDieState();
+        }
+    }
+
+    private void SetDieState()
+    {
+        animator.SetTrigger("Die");
+        GetComponent<Collider>().enabled = false;
+        enabled = false;
+    }
+
+    void SetOriginalColor()
+    {
+        meshRenderer.material.color = Color.white;
+    }
+    public float takeHitColorChangeTime = 0.1f;
+    SkinnedMeshRenderer meshRenderer;
 }
