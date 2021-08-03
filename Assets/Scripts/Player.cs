@@ -102,7 +102,9 @@ public partial class Player : MonoBehaviour
             move = relateMove;
 
             move.Normalize();
-            transform.Translate(move * speed * Time.deltaTime, Space.World);
+
+            float _speed = isFiring ? speedWhileShooting : speed;
+            transform.Translate(move * _speed * Time.deltaTime, Space.World);
         }
 
 
