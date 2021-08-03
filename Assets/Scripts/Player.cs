@@ -5,6 +5,16 @@ using UnityEngine;
 
 public partial class Player : MonoBehaviour
 {
+    public enum StateType
+    {
+        Idle,
+        Move,
+        TakeHit,
+        Roll,
+        Die,
+    }
+    public bool isFiring = false;
+    public StateType stateType = StateType.Idle;
     Animator animator;
     private void Awake()
     {
@@ -35,20 +45,9 @@ public partial class Player : MonoBehaviour
 
     public float rollingSpeedUserMultipy = 1;
 
-    public enum StateType
-    {
-        Idle,
-        Move,
-        Attack,
-        TakeHit,
-        Roll,
-        Die,
-    }
-    public StateType stateType = StateType.Idle;
     private IEnumerator RollCo()
     {
-        animator.SetBool("Fire", false);
-        DecreaseRecoil();
+        Endfiring();
 
         // 회전 방향은 처음 바라보던 방향으로 고정.
         // 총알 금지. 움직이는거 금지.마우스 바라보는거 금지.
@@ -113,4 +112,5 @@ public partial class Player : MonoBehaviour
     }
 
     public float speed = 5;
+    public float speedWhileShooting = 3;
 }
