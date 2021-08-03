@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1380495410}
-  m_PathPosition: 10.731617
+  m_PathPosition: 18.708248
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -491,8 +491,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128086830}
-  m_LocalRotation: {x: -0.0019427665, y: 0.9534139, z: -0.30159655, w: -0.006141518}
-  m_LocalPosition: {x: -31.19073, y: 0, z: -40.030315}
+  m_LocalRotation: {x: 0.29305533, y: 0.527467, z: -0.20026146, w: 0.77187604}
+  m_LocalPosition: {x: -30.280596, y: 0, z: -21.872458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 365783036}
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 902416936}
-  m_PathPosition: 11.74086
+  m_PathPosition: 13.74766
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -779,8 +779,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359566468}
-  m_LocalRotation: {x: 0.30696002, y: -0.002913392, z: 0.00093966426, w: 0.9517175}
-  m_LocalPosition: {x: -31.265371, y: 0, z: -29.295929}
+  m_LocalRotation: {x: 0.10410998, y: 0.10895935, z: -0.011475578, w: 0.9885127}
+  m_LocalPosition: {x: -30.071356, y: 0, z: -21.483757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 73043311}
@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1162854606}
-  m_PathPosition: -9
+  m_PathPosition: 18.267849
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -1336,8 +1336,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564668575}
-  m_LocalRotation: {x: 0.3170698, y: -0.021965142, z: 0.007345575, w: 0.9481194}
-  m_LocalPosition: {x: -24.777584, y: 0, z: -9.694085}
+  m_LocalRotation: {x: 0.24428122, y: 0.3308085, z: -0.08907957, w: 0.90716994}
+  m_LocalPosition: {x: -24.640297, y: 0, z: 22.451115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1631578943}
@@ -1511,8 +1511,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671784439}
-  m_LocalRotation: {x: 0.30496836, y: -0.01974238, z: 0.006323463, w: 0.9521369}
-  m_LocalPosition: {x: 2.603077, y: 0, z: -27.266464}
+  m_LocalRotation: {x: 0.09003344, y: 0.10587744, z: -0.009626385, w: 0.9902481}
+  m_LocalPosition: {x: 2.4283714, y: 0, z: -25.061298}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 154154759}
@@ -2297,8 +2297,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.3170698, y: -0.021965142, z: 0.007345575, w: 0.9481194}
-  m_LocalPosition: {x: -21.762638, y: 7.6, z: -22.121346}
+  m_LocalRotation: {x: 0.24428122, y: 0.3308085, z: -0.08907957, w: 0.90716994}
+  m_LocalPosition: {x: -21.62535, y: 7.6, z: 10.023854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2571,8 +2571,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106769181}
-  m_LocalRotation: {x: -0.0037533157, y: 0.9539765, z: -0.29961973, w: -0.011950398}
-  m_LocalPosition: {x: 2.5431843, y: 0, z: -38.53787}
+  m_LocalRotation: {x: 0.21800351, y: 0.28611806, z: -0.06702241, w: 0.9306551}
+  m_LocalPosition: {x: 2.6868248, y: 0, z: -30.044016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1135238584}
@@ -2625,7 +2625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 373285150}
-  m_PathPosition: -9
+  m_PathPosition: 8.493433
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -3453,7 +3453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1877504795}
-  m_PathPosition: 12.292879
+  m_PathPosition: 44.437195
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -4394,6 +4394,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2433222197889169679, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6120025990291610022, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
       propertyPath: m_Name
       value: Soldier
@@ -4404,7 +4408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6120025990291610072, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.23
+      value: -13.2
       objectReference: {fileID: 0}
     - target: {fileID: 6120025990291610072, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4412,7 +4416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6120025990291610072, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.04
+      value: 20.04
       objectReference: {fileID: 0}
     - target: {fileID: 6120025990291610072, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4440,6 +4444,82 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6120025990291610072, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[0].time
+      value: -0.0000000037252903
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[1].time
+      value: 0.096626386
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[2].time
+      value: 0.97630507
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[0].value
+      value: 0.26222008
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[1].value
+      value: 0.7323088
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[2].value
+      value: 1.7667837
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[0].inSlope
+      value: -1.3070514
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[1].inSlope
+      value: 4.751832
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[2].inSlope
+      value: -0.124666706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[0].outSlope
+      value: -1.3070514
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[1].outSlope
+      value: 4.751832
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[2].inWeight
+      value: 0.46941715
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[2].outSlope
+      value: -0.124666706
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[0].outWeight
+      value: 0.041563742
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[1].outWeight
+      value: 0.06494785
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6120025990291610073, guid: ec3b4002e5a60814995b94407fa58703, type: 3}
+      propertyPath: rollSpeed.m_Curve.Array.data[1].tangentMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4608,6 +4688,10 @@ PrefabInstance:
     - target: {fileID: 4129650614387924149, guid: 96177ed1074c0264b946e9780eb68506, type: 3}
       propertyPath: m_Name
       value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 4129650614387924149, guid: 96177ed1074c0264b946e9780eb68506, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4129650614387924150, guid: 96177ed1074c0264b946e9780eb68506, type: 3}
       propertyPath: hp

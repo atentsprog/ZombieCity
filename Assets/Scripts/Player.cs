@@ -19,7 +19,34 @@ public partial class Player : Actor
         LookAtMouse();
         Move();
         Fire();
+        Roll();
     }
+
+    private void Roll()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(RollCo());
+        }
+    }
+
+    float multiplySpeed = 1;
+    public AnimationCurve rollSpeed;
+    private IEnumerator RollCo()
+    {
+        animator.Play("Roll");
+        float startTime = Time.time;
+        float endTime = rollSpeed[rollSpeed.length - 1].time + startTime;
+        while(endTime > Time.time)
+        {
+            float time = Time.time - startTime;
+            multiplySpeed = rollSpeed.Evaluate(time);
+            print($"{time} : {multiplySpeed}");
+            yield return null;
+        }
+        multiplySpeed = 1;
+    }
+
     Plane plane = new Plane(new Vector3(0, 1, 0), 0);
 
     private void LookAtMouse()
@@ -53,7 +80,7 @@ public partial class Player : Actor
             move = relateMove;
 
             move.Normalize();
-            transform.Translate(move * speed * Time.deltaTime, Space.World);
+            transform.Translate(move * speed * multiplySpeed * Time.deltaTime, Space.World);
         }
 
 
