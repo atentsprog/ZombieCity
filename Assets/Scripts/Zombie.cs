@@ -18,12 +18,15 @@ public class Zombie : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         target = FindObjectOfType<Player>().transform;  // 
         originalSpeed = agent.speed;
+        attackCollider = GetComponentInChildren<SphereCollider>();
 
         CurrentFsm = ChaseFSM;
 
         while (true) // 상태를 무한히 반복해서 실행하는 부분.
         {
             var previousFSM = CurrentFsm;
+
+            //print($"{CurrentFsm.Method} 시작됨");
 
             fsmHandle = StartCoroutine(CurrentFsm());
 
@@ -41,6 +44,9 @@ public class Zombie : MonoBehaviour
         get { return m_currentFsm; }
         set
         {
+            if(fsmHandle != null)
+                StopCoroutine(fsmHandle);
+
             m_currentFsm = value;
             fsmHandle = null;
         }
@@ -69,22 +75,44 @@ public class Zombie : MonoBehaviour
         float distance = Vector3.Distance(transform.position, target.position);
         return distance < attackDistance;
     }
+    public float attackTime = 0.4f;
+    public float attackAnimationTime = 0.8f;
+    public SphereCollider attackCollider;
+    public LayerMask enemyLayer;
+    public int power = 20;
     private IEnumerator AttackFSM()
     {
-        yield return null;
         // 타겟 바라보기
+        var lookAtPosition = target.position;
+        lookAtPosition.y = transform.position.y;
+        transform.LookAt(lookAtPosition);
 
         //공격 애니메이션 하기.
+        animator.SetTrigger("Attack");
 
         // 이동 스피드 0으로 하기.
+        agent.speed = 0;
 
-        // 특정 시간 지나면 충돌메시 사용해서 충돌 감지하기.
+        // 공격타이밍까지 대기(특정 시간 지나면)
+        yield return new WaitForSeconds(attackTime);
 
-        //애니메이션 끝날때까지 대기
+        // 충돌메시 사용해서 충돌 감지하기.
+        Collider[] enemyColliders = Physics.OverlapSphere(
+            attackCollider.transform.position
+            , attackCollider.radius, enemyLayer);
+        foreach (var item in enemyColliders)
+        {
+            item.GetComponent<Player>().TakeHit(power);
+        }
+
+        // 공격 애니메이션 끝날때까지 대기
+        yield return new WaitForSeconds(attackAnimationTime - attackTime);
 
         // 이동스피드 복구
+        SetOriginalSpeed();
 
         // FSM지정.
+        CurrentFsm = ChaseFSM;
     }
 
 

@@ -113,6 +113,11 @@ public partial class Player : MonoBehaviour
         animator.SetFloat("Speed", move.sqrMagnitude);
     }
 
+    internal void TakeHit(int power)
+    {
+        print(power);
+    }
+
     public float speed = 5;
     public float speedWhileShooting = 3;
 }
