@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Zombie : MonoBehaviour
 {
@@ -17,12 +19,47 @@ public class Zombie : MonoBehaviour
         target = FindObjectOfType<Player>().transform;  // 
         originalSpeed = agent.speed;
 
-        while (hp > 0)
+        //while (hp > 0)
+        //{
+        //    if (target)
+        //        agent.destination = target.position;
+        //    yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+        //}
+
+        CurrentFsm = ChaseFSM;
+
+        while (true) // 상태를 무한히 반복해서 실행하는 부분.
         {
-            if (target)
-                agent.destination = target.position;
-            yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+            var previousFSM = CurrentFsm;
+
+            fsmHandle = StartCoroutine(CurrentFsm());
+
+            // FSM 안에서 에러 발생시 무한 루프 도는 것을 방지 하기 위해서 추가함.
+            if (fsmHandle == null && previousFSM == CurrentFsm)
+                yield return null;
+
+            while (fsmHandle != null)
+                yield return null;
         }
+    }
+    Coroutine fsmHandle;
+    protected Func<IEnumerator> CurrentFsm
+    {
+        get { return m_currentFsm; }
+        set
+        {
+            m_currentFsm = value;
+            fsmHandle = null;
+        }
+    }
+    Func<IEnumerator> m_currentFsm;
+
+    IEnumerator ChaseFSM()
+    {
+        if (target)
+            agent.destination = target.position;
+        yield return new WaitForSeconds(Random.Range(0.5f, 2f));
+        CurrentFsm = ChaseFSM;
     }
 
     public float bloodEffectYPosition = 1.3f;
