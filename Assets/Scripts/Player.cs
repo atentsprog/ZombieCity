@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public partial class Player : MonoBehaviour
+public partial class Player : Actor
 {
     public enum StateType
     {
@@ -15,7 +15,7 @@ public partial class Player : MonoBehaviour
     }
     public bool isFiring = false;
     public StateType stateType = StateType.Idle;
-    Animator animator;
+
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -113,9 +113,11 @@ public partial class Player : MonoBehaviour
         animator.SetFloat("Speed", move.sqrMagnitude);
     }
 
-    internal void TakeHit(int power)
+    internal void TakeHit(int damage)
     {
-        print(power);
+        hp -= damage;
+
+        //CreateBloodEffect();
     }
 
     public float speed = 5;
