@@ -5,12 +5,34 @@ using UnityEngine;
 
 public partial class Player : Actor
 {
+    public GunInfo startGun;
+    public GameObject currentGun;
+    public Transform weaponRightHandPosition;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        bulletLight = GetComponentInChildren<Light>(true).gameObject;
+        //bulletLight = GetComponentInChildren<Light>(true).gameObject;
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>(true);
+
+        CreateGun(startGun);
     }
+
+    private void CreateGun(GunInfo gunInfo)
+    {
+        GunInfo newGunInfo = Instantiate(gunInfo, weaponRightHandPosition);
+        currentGun = newGunInfo.gameObject;
+        //currentGun.transform.SetPositionAndRotation(gunInfo.gameObject.transform.localPosition
+            //, gunInfo.gameObject.transform.localRotation);
+        bulletLight = newGunInfo.bulletLight;
+
+        animator.runtimeAnimatorController = newGunInfo.animatorOverride;
+
+        bulletPosition = newGunInfo.bulletPosition;
+        bullet = newGunInfo.bullet;
+
+        shootDelay = newGunInfo.delay;
+    }
+
     void Update()
     {
         if (Time.deltaTime == 0)
