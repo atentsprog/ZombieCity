@@ -53,6 +53,7 @@ public class EditorUtil
             new System.Type[]{
                 typeof(TextMesh),
                 typeof(TMPro.TextMeshPro),
+                typeof(TMPro.TextMeshProUGUI),
                 typeof(Animation),
                 typeof(Image),
                 typeof(Text),

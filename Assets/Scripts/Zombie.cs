@@ -141,6 +141,12 @@ public class Zombie : Actor
     internal void TakeHit(int damage, Vector3 toMoveDirection)
     {
         hp -= damage;
+        if (hp <= 0)
+        {
+            GetComponent<Collider>().enabled = false;
+            animator.SetBool("Die", true);
+        }
+
         // 뒤로 밀려나게하자.
         PushBackMove(toMoveDirection);
 
@@ -155,18 +161,29 @@ public class Zombie : Actor
         // 이동 스피드를 잠시 0으로 만들자.
         agent.speed = 0;
 
-        yield return new WaitForSeconds(TakeHitStopSpeedTime);
-        SetOriginalSpeed();
-
+        yield return new WaitForSeconds(TakeHitStopSpeedTime); // 피격 모션 끝나기까지 기다림.
+        
         if (hp <= 0)
-        {
-            GetComponent<Collider>().enabled = false;
-            yield return new WaitForSeconds(1);
+        { 
             Die();
+            yield break;
         }
+        else
+        {
+            SetOriginalSpeed();
+        }
+
         CurrentFsm = ChaseFSM;
     }
 
+    public int rewardScore = 100;
+    public float onDieDestroyDelay = 2f;
+    void Die()
+    {
+        StageManager.Instance.AddScore(rewardScore);
+        //animator.Play("Die");
+        Destroy(gameObject, onDieDestroyDelay);
+    }
     public float moveBackDistance = 0.1f;
     public float moveBackNoise = 0.1f;
     private void PushBackMove(Vector3 toMoveDirection)
@@ -184,9 +201,4 @@ public class Zombie : Actor
         agent.speed = originalSpeed;
     }
 
-    void Die()
-    {
-        animator.Play("Die");
-        Destroy(gameObject, 1);
-    }
 }
