@@ -6,19 +6,37 @@ public partial class Player : Actor
 {
     public GameObject bullet;
     public Transform bulletPosition;
-
+    public int bulletCount = 25;         // 전체 총알 수
+    public int bulletCountInClip = 20;   // 탄창안의 총알 수
+    public int bulletMaxCountInClip = 20; // 탄창에 장전 가능한 총알 수
 
     float shootDelayEndTime;
     void Fire()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.LogWarning("총알 리로드");
+            ReloadBullet();
+        }
+
         if (Input.GetMouseButton(0))
         {
-            if (shootDelayEndTime < Time.time)
+            if (bulletCountInClip == 0)
             {
-                animator.SetBool("Fire", true);
-                shootDelayEndTime = Time.time + shootDelay;
-                IncreaseRecoil();
-                StartCoroutine(InstantiateBulletAndFlashBulletCo());
+                Debug.LogWarning("리로드 해주세요");
+            }
+            else
+            {
+                if (shootDelayEndTime < Time.time)
+                {
+                    bulletCountInClip--;
+                    RefreshBulletCountUI();
+
+                    animator.SetBool("Fire", true);
+                    shootDelayEndTime = Time.time + shootDelay;
+                    IncreaseRecoil();
+                    StartCoroutine(InstantiateBulletAndFlashBulletCo());
+                }
             }
         }
         else
@@ -26,6 +44,39 @@ public partial class Player : Actor
             animator.SetBool("Fire", false);
             DecreaseRecoil();
         }
+    }
+
+    private void RefreshBulletCountUI()
+    {
+        print($"bulletCount:{bulletCount}, bulletCountInClip:{bulletCountInClip}, bulletMaxCountInClip:{bulletMaxCountInClip}");
+        //bulletCount    // 전체 총알 수
+        //bulletCountInClip    // 탄창안의 총알 수
+        //bulletMaxCountInClip  // 탄창에 장전 가능한 총알 수
+    }
+
+    bool ingReloadBullet;
+    private void ReloadBullet()
+    {
+        if (ingReloadBullet)
+        {
+            Debug.LogWarning("이미 총알 장전중입니다");
+            return;
+        }
+        StartCoroutine(ReloadBulletCo());
+    }
+
+    public float reloadTime = 1f;
+    private IEnumerator ReloadBulletCo()
+    {
+        ingReloadBullet  = true;
+        animator.SetTrigger("Reload");
+        yield return new WaitForSeconds(reloadTime);
+        ingReloadBullet = false;
+
+        int reloadCount = Mathf.Min(bulletMaxCountInClip, bulletCount);
+        bulletCountInClip = reloadCount;
+        bulletCount -= reloadCount;
+        RefreshBulletCountUI();
     }
 
     GameObject bulletLight;
