@@ -9,7 +9,7 @@ AnimatorOverrideController:
   m_Name: ShotGun
   m_Controller: {fileID: 9100000, guid: 94d76f859419a5048a2d6cf80ef45f88, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 417175240684547266, guid: c343634b5c547044cb200e5943f714a7, type: 3}
-    m_OverrideClip: {fileID: 7400000, guid: 517a61afdca433440b22c08cc8bf4386, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 1a9c33f9ed043cf45ab22f28664e9714, type: 2}
     m_OverrideClip: {fileID: 2153837787872758797, guid: 947cae296bd838b48824cf8e71fcb79e, type: 3}
+  - m_OriginalClip: {fileID: 2413757288245772150, guid: 947cae296bd838b48824cf8e71fcb79e, type: 3}
+    m_OverrideClip: {fileID: 0}

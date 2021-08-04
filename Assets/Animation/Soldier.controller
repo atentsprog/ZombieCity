@@ -294,7 +294,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Gun Layer
     m_StateMachine: {fileID: 1269508182642166888}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 4f6d3405d3ca1fd41b39f2c6312667ec, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -591,7 +591,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 517a61afdca433440b22c08cc8bf4386, type: 2}
+  m_Motion: {fileID: -623603649343465320, guid: 3c11273fc9c5e7d41aeddfb0721bb8fa, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
