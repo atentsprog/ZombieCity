@@ -178,11 +178,48 @@ MonoBehaviour:
   stateType: 0
   rollingSpeedAC:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0013694763
+      value: 0.65512085
+      inSlope: 3.060463
+      outSlope: 3.060463
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16194572
+    - serializedVersion: 3
+      time: 0.44402593
+      value: 1.6380906
+      inSlope: 0.17625561
+      outSlope: 0.17625561
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.31303874
+    - serializedVersion: 3
+      time: 0.77474475
+      value: 0.111926295
+      inSlope: -15.576358
+      outSlope: -0.056914534
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.05564313
+      outWeight: 0.27024922
+    - serializedVersion: 3
+      time: 0.96684444
+      value: 0.020851567
+      inSlope: -0.27032518
+      outSlope: -0.27032518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20026283
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   rollingSpeedUserMultipy: 1
+  diePreDelayTime: 0.3
   speed: 5
   speedWhileShooting: 3
   bullet: {fileID: 9021006395178722910, guid: 0b938b7a65c05784aab3c59a0e89f7cc, type: 3}

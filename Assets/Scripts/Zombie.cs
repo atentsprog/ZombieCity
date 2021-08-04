@@ -57,12 +57,37 @@ public class Zombie : Actor
             agent.destination = target.position;
         yield return new WaitForSeconds(Random.Range(0.5f, 2f));
 
-        // 타겟이 공격 범위 안에 들어왔는가?
-        if(TargetIsInAttackArea()) // 들어왔다면
-            CurrentFsm = AttackFSM;
-        else
-            CurrentFsm = ChaseFSM;
+        SetFsm_SelectAttackTargetOrAttackOrChase();
     }
+
+    private void SetFsm_SelectAttackTargetOrAttackOrChase()
+    {
+        if (IsAttackableTarget())
+        {
+            // 타겟이 공격 범위 안에 들어왔는가?
+            if (TargetIsInAttackArea()) // 들어왔다면
+                CurrentFsm = AttackFSM;
+            else
+                CurrentFsm = ChaseFSM;
+        }
+        else
+        {
+            print("배회하기 구현해야함");
+            // 공격 가능한 타겟 찾기.
+            // 공격 가느한 타겟이 없다면
+            //-> 배회하기 혹은 제자리 가만 있기.
+        }
+    }
+
+    private bool IsAttackableTarget()
+    {
+        if (target.GetComponent<Player>().stateType
+            == Player.StateType.Die)
+            return false;
+
+        return true;
+    }
+
     public float attackDistance = 3;
     private void OnDrawGizmosSelected()
     {
@@ -110,7 +135,7 @@ public class Zombie : Actor
         SetOriginalSpeed();
 
         // FSM지정.
-        CurrentFsm = ChaseFSM;
+        SetFsm_SelectAttackTargetOrAttackOrChase();
     }
 
     internal void TakeHit(int damage, Vector3 toMoveDirection)
