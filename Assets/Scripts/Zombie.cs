@@ -16,7 +16,7 @@ public class Zombie : Actor
         animator = GetComponentInChildren<Animator>();
         target = FindObjectOfType<Player>().transform;  // 
         originalSpeed = agent.speed;
-        attackCollider = GetComponentInChildren<SphereCollider>();
+        attackCollider = transform.Find("AttackRange").GetComponent<SphereCollider>();
 
         CurrentFsm = ChaseFSM;
 
