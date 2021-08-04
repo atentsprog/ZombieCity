@@ -54,10 +54,6 @@ public class SaveInt
 
     public int Value
     {
-        get
-        {
-            return value;
-        }
         set
         {
             if (this.value != value)
@@ -71,6 +67,11 @@ public class SaveInt
 
     public override string ToString()
     {
-        return Value.ToString();
+        return value.ToString();
+    }
+
+    public static implicit operator int(SaveInt saveInt)
+    {
+        return saveInt.value;
     }
 }
