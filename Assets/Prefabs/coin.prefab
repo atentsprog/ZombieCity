@@ -114,7 +114,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.42150006
+  m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1947433452
 MonoBehaviour:
@@ -128,11 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57418d29953bcc048ae984b680a983d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getMethod: 1
+  getMethod: 0
   keyCode: 101
   type: 0
   amount: 90
   itemId: 0
+  color: {r: 0.7225067, g: 1, b: 0.61698115, a: 1}
 --- !u!1 &995379004141744623
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,4 +216,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 20
-  duration: 3
+  duration: 11
