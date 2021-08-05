@@ -173,7 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   bloodEffectYPosition: 1.3
-  bloodParticle: {fileID: 0}
+  bloodParticle: {fileID: 6157772641656921867, guid: 525bcdfb8a421e64aa47a0c32fbd8101, type: 3}
+  damageColor: {r: 1, g: 0.22508657, b: 0, a: 1}
   isFiring: 0
   stateType: 0
   rollingSpeedAC:
