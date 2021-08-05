@@ -70,6 +70,8 @@ public class DroppedItem : MonoBehaviour
                 StageManager.Instance.AddGold(amount);
                 break;
         }
+
+        transform.GetComponentInParent<MoveToPlayer>()?.StopCoroutine();
         Destroy(transform.root.gameObject);
     }
 }
