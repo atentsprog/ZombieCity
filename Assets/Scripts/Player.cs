@@ -16,10 +16,13 @@ public partial class Player : Actor
     public bool isFiring = false;
     public StateType stateType = StateType.Idle;
 
+    public WeaponInfo currentWeapon;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         bulletLight = GetComponentInChildren<Light>(true).gameObject;
+
+        animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
     }
     void Update()
     {
