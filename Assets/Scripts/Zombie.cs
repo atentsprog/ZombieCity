@@ -140,7 +140,8 @@ public class Zombie : Actor
 
     internal void TakeHit(int damage, Vector3 toMoveDirection)
     {
-        hp -= damage;
+        base.TakeHit(damage);
+
         if (hp <= 0)
         {
             GetComponent<Collider>().enabled = false;
@@ -152,11 +153,11 @@ public class Zombie : Actor
 
         CurrentFsm = TakeHitFSM;
     }
+
     IEnumerator TakeHitFSM()
     {
         animator.Play(Random.Range(0, 2) == 0 ? "TakeHit1" : "TakeHit2", 0, 0);
         // 피격 이펙트 생성(피,..)
-        CreateBloodEffect();
 
         // 이동 스피드를 잠시 0으로 만들자.
         agent.speed = 0;
