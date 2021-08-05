@@ -92,7 +92,7 @@ Animator:
   m_GameObject: {fileID: 995379003408482544}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 55ca7598ac059c04c8bd0d37e4f7e777, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -110,6 +110,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 995379004141744616}
+  - component: {fileID: 1438102024168777894}
+  - component: {fileID: 4975390281203362140}
+  - component: {fileID: 76331845214863883}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -132,3 +135,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1438102024168777894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995379004141744623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6cd6d92e3c14a04bb658e7fb4709130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  amount: 100
+  itemId: 0
+--- !u!135 &4975390281203362140
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995379004141744623}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.56, z: 0}
+--- !u!114 &76331845214863883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995379004141744623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1daec966f69a5c24d9c32cac19eabef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems: []
+  eventType: 0

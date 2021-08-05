@@ -17,7 +17,7 @@ public class DropDownUI : BaseUI<DropDownUI>
     SaveInt lastSelectedIndex;
     protected override void OnShow()
     {
-        dropdown.value = lastSelectedIndex.Value;
+        dropdown.value = lastSelectedIndex;
     }
 
     void Selected(int selectedIndex)

@@ -17,7 +17,8 @@ public class TimeController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             //Time.timeScale *= 2f;
-            Time.timeScale = Time.timeScale * 2f;
+            float timeScale = Time.timeScale * 2f;
+            Time.timeScale = Mathf.Min(100, timeScale);
         }
 
         // x누르면 항상 정속도

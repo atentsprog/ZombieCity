@@ -8,10 +8,10 @@ public class ToastMessage : SingletonMonoBehavior<ToastMessage>
     public override int SortOrder => 1;
     public override string HierarchyPath => $"Canvas1/{nameof(ToastMessage)}";
     [SerializeField]
-    Text text;
+    Text text = null;
 
     [SerializeField]
-    CanvasGroup canvasGroup;
+    CanvasGroup canvasGroup = null;
 
     public void ShowToast(string text, int duration = 2)
     {

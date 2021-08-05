@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class CoroutineManager : MonoBehaviour
 {
+    public static bool ApplicationQuit = false;
+    private void OnApplicationQuit() => ApplicationQuit = true;
+
     static CoroutineManager instance;
     static CoroutineManager Instance
     {
@@ -17,6 +20,9 @@ public class CoroutineManager : MonoBehaviour
 
     internal static void DelayCoroutine(float delayTime, Action action)
     {
+        if (ApplicationQuit)
+            return;
+
         if (action == null)
             return;
         Instance.StartCoroutine(Instance.RunDelayCoroutineCo(delayTime, action));

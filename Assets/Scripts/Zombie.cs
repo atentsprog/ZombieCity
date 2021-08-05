@@ -176,14 +176,25 @@ public class Zombie : Actor
         CurrentFsm = ChaseFSM;
     }
 
+
+    [Header("보상")]
     public int rewardScore = 100;
     public float onDieDestroyDelay = 2f;
+
     void Die()
     {
         StageManager.Instance.AddScore(rewardScore);
-        //animator.Play("Die");
-        Destroy(gameObject, onDieDestroyDelay);
+        StartCoroutine(DieCo());
     }
+
+    //private void OnDestroy() 함수에서 게임오브젝트 생성은 최대한 피해야한다!
+    private IEnumerator DieCo()
+    {
+        yield return new WaitForSeconds(onDieDestroyDelay);
+        
+        Destroy(gameObject);
+    }
+
     public float moveBackDistance = 0.1f;
     public float moveBackNoise = 0.1f;
     private void PushBackMove(Vector3 toMoveDirection)

@@ -7,13 +7,16 @@ public class StageManager : SingletonMonoBehavior<StageManager>
 {
     public SaveInt highScore;
     public int score;
+    public SaveInt gold;
 
     new private void Awake()
     {
         base.Awake();
         highScore = new SaveInt("highScore");
+        gold = new SaveInt("UserGold");
 
         ScoreUIRefresh();
+        GoldUIRefresh();
     }
     public void AddScore(int addScore)
     {
@@ -27,5 +30,21 @@ public class StageManager : SingletonMonoBehavior<StageManager>
     private void ScoreUIRefresh()
     {
         ScoreUI.Instance.UpdateUI(score, highScore);
+    }
+    private void GoldUIRefresh()
+    {
+        GoldUI.Instance.UpdateUI(gold);
+    }
+
+    internal void AddGold(int amount)
+    {
+        gold += amount;
+        GoldUIRefresh();
+    }
+
+
+    internal void AddItem(int itemId, int amount)
+    {
+        throw new NotImplementedException();
     }
 }

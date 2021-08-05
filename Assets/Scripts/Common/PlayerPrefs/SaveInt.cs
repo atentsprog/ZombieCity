@@ -58,11 +58,16 @@ public class SaveInt
         {
             if (this.value != value)
             {
-                PlayerPrefs.SetInt(key, value);
-                PlayerPrefs.Save();
+                Save(value);
             }
-            this.value = value;
         }
+    }
+
+    private void Save(int value)
+    {
+        PlayerPrefs.SetInt(key, value);
+        PlayerPrefs.Save();
+        this.value = value;
     }
 
     public override string ToString()
@@ -70,8 +75,31 @@ public class SaveInt
         return value.ToString();
     }
 
+    // 암시적 형변환 SaveInt를 int로
     public static implicit operator int(SaveInt saveInt)
     {
         return saveInt.value;
+    }
+
+    // 연산자 오버로드
+    public static SaveInt operator +(SaveInt a, int b)
+    {
+        a.Save(a.value + b);
+        return a;
+    }
+    public static SaveInt operator -(SaveInt a, int b)
+    {
+        a.Save(a.value - b);
+        return a;
+    }
+    public static SaveInt operator *(SaveInt a, int b)
+    {
+        a.Save(a.value * b);
+        return a;
+    }
+    public static SaveInt operator /(SaveInt a, int b)
+    {
+        a.Save(a.value / b);
+        return a;
     }
 }
