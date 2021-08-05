@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 54d21f6ece3b46479f0c328f8c6007e0, type: 3}
-  m_Name: Dark to Light Green - Vertical
+  m_Name: TextMesh
   m_EditorClassIdentifier: 
   colorMode: 2
-  topLeft: {r: 0.9056604, g: 0.56101984, b: 0.29619074, a: 1}
-  topRight: {r: 0.9056604, g: 0.56101984, b: 0.29619074, a: 1}
-  bottomLeft: {r: 0.7830189, g: 0.33914194, b: 0, a: 1}
-  bottomRight: {r: 0.7830189, g: 0.33914194, b: 0, a: 1}
+  topLeft: {r: 1, g: 0.73290586, b: 0, a: 1}
+  topRight: {r: 1, g: 0.73290586, b: 0, a: 1}
+  bottomLeft: {r: 1, g: 0.39747074, b: 0.24213827, a: 1}
+  bottomRight: {r: 1, g: 0.39747074, b: 0.24213827, a: 1}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class InstantiateInfo
@@ -10,16 +11,12 @@ public class InstantiateInfo
 }
 public class InstantiateHelper : MonoBehaviour
 {
-    public static bool ApplicationQuit = false;
-    private void OnApplicationQuit() => ApplicationQuit = true;
-
-
     public List<InstantiateInfo> dropItems;
     public enum EventType
     {
         OnDestroy,
-        OnEnable,
         OnDisable,
+        OnEnable,
     }
     public EventType eventType = EventType.OnDestroy;
 
@@ -28,11 +25,12 @@ public class InstantiateHelper : MonoBehaviour
         if (eventType != EventType.OnDestroy)
             return;
 
-        if (ApplicationQuit)
-            return;
+        if (TimeController.ApplicationQuit)
+            return; 
 
         InstantiateObjects();
     }
+
     private void OnEnable()
     {
         if (eventType != EventType.OnEnable)
