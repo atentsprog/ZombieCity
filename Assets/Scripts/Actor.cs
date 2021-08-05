@@ -24,16 +24,16 @@ public class Actor : MonoBehaviour
     {
         hp -= damage;
 
-        InstantiateDamageText(damage);
+        InstantiateDamageText(damage, transform.position, damgeTextColor);
     }
 
-    protected void InstantiateDamageText(int damage)
+    static public void InstantiateDamageText(int number, Vector3 position, Color color)
     {
         GameObject momoryObject = (GameObject)Resources.Load("TextEffect");
-        GameObject damgeTextGo = Instantiate(momoryObject, transform.position, Quaternion.identity);
+        GameObject damgeTextGo = Instantiate(momoryObject, position, Quaternion.identity);
         TextMeshPro text = damgeTextGo.GetComponent<TextMeshPro>();
-        text.color = damgeTextColor;
-        text.text = damage.ToNumber();
+        text.color = color;
+        text.text = number.ToNumber();
     }
 
 }

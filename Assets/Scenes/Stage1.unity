@@ -431,34 +431,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1323731999, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
-      propertyPath: m_Height
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323731999, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
-      propertyPath: m_Radius
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1323731999, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
-      propertyPath: m_ObstacleAvoidanceType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 76331845214863883, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
-      propertyPath: eventType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 76331845214863883, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
-      propertyPath: dropItems.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 76331845214863883, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
-      propertyPath: dropItems.Array.data[0].go
-      value: 
-      objectReference: {fileID: 180128, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 3}
-    - target: {fileID: 76331845214863883, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
-      propertyPath: dropItems.Array.data[0].ratio
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 995379004141744616, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -506,10 +478,6 @@ PrefabInstance:
     - target: {fileID: 995379004141744623, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
       propertyPath: m_Name
       value: Coin
-      objectReference: {fileID: 0}
-    - target: {fileID: 995379004141744623, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
@@ -559,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 727880329}
-  m_PathPosition: -10.08
+  m_PathPosition: -9.088871
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -1956,7 +1924,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671784439}
-  m_LocalRotation: {x: 0.15275158, y: 0.013815767, z: -0.0021356542, w: 0.98816574}
+  m_LocalRotation: {x: 0.15275158, y: 0.013815779, z: -0.002135656, w: 0.98816574}
   m_LocalPosition: {x: 1.8609142, y: 0, z: -24.984638}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2950,7 +2918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 568024672}
-  m_PathPosition: -10.08
+  m_PathPosition: -7.798513
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -3094,7 +3062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1426666346}
-  m_PathPosition: 8.0700245
+  m_PathPosition: 9.304699
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0

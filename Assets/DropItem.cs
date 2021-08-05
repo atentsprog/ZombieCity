@@ -13,6 +13,7 @@ public class DropItem : MonoBehaviour
     public DropItemType type;
     public int amount;
     public int itemId;
+    public Color textColor = Color.white;
 
     bool alreadyDone = false;
     private void OnTriggerEnter(Collider other)
@@ -27,9 +28,11 @@ public class DropItem : MonoBehaviour
             {
                 case DropItemType.Gold:
                     StageManager.Instance.AddGold(amount);
+                    Actor.InstantiateDamageText(amount, transform.position, textColor);
                     break;
                 case DropItemType.Point:
                     StageManager.Instance.AddScore(amount);
+                    Actor.InstantiateDamageText(amount, transform.position, textColor);
                     break;
                 case DropItemType.Item:
                     StageManager.Instance.AddItem(itemId, amount);
