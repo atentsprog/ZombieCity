@@ -14,11 +14,15 @@ public class DropItem : MonoBehaviour
     public int amount;
     public int itemId;
 
+    bool alreadyDone = false;
     private void OnTriggerEnter(Collider other)
     {
+        if (alreadyDone)
+            return;
+
         if(other.CompareTag("Player"))
         {
-            GetComponent<Collider>().enabled = false;
+            alreadyDone = true;
             switch (type)
             {
                 case DropItemType.Gold:
@@ -32,7 +36,7 @@ public class DropItem : MonoBehaviour
                     break;
             }
 
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }
