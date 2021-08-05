@@ -9,11 +9,23 @@ public enum DropItemType
 }
 public class DroppedItem : MonoBehaviour
 {
+    public enum GetMethodType
+    {
+        TriggerEnter,
+        KeyDown,
+    }
+    public GetMethodType getMethod;
+    public KeyCode keyCode = KeyCode.E;
+
     public DropItemType type;
     public int amount;
     public int itemId;
 
     bool alreadyDone = false;
+    void Awake()
+    {
+        enabled = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (alreadyDone)
@@ -21,14 +33,43 @@ public class DroppedItem : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            alreadyDone = true;
-            switch(type)
+            switch (getMethod)
             {
-                case DropItemType.Gold:
-                    StageManager.Instance.AddGold(amount);
+                case GetMethodType.TriggerEnter:
+                    ItemAcquisition();
+                    break;
+                case GetMethodType.KeyDown:
+                    enabled = true;
                     break;
             }
-            Destroy(transform.parent.gameObject);
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            enabled = false;
+        }
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(keyCode))
+        {
+            enabled = false;
+            ItemAcquisition();
+        }
+    }
+
+    private void ItemAcquisition()
+    {
+        alreadyDone = true;
+        switch (type)
+        {
+            case DropItemType.Gold:
+                StageManager.Instance.AddGold(amount);
+                break;
+        }
+        Destroy(transform.root.gameObject);
     }
 }
