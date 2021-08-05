@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public partial class Player : Actor
 {
     public enum StateType
@@ -23,6 +23,12 @@ public partial class Player : Actor
         bulletLight = GetComponentInChildren<Light>(true).gameObject;
 
         animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
+        var vcs = FindObjectsOfType<CinemachineVirtualCamera>();
+        foreach(var item in vcs)
+        {
+            item.Follow = transform;
+            item.LookAt = transform;
+        }
     }
     void Update()
     {
