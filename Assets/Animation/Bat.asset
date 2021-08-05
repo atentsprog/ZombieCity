@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cf42c672f2724449be039a022fae28b, type: 3}
-  m_Name: BatWeaponInfo
+  m_Name: Bat
   m_EditorClassIdentifier: 
   damage: 20
   overrideAnimator: {fileID: 22100000, guid: 368e5d699bde3ce44950bf7920ccf199, type: 2}

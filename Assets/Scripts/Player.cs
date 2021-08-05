@@ -17,12 +17,20 @@ public partial class Player : Actor
     public StateType stateType = StateType.Idle;
 
     public WeaponInfo currentWeapon;
+    public Transform rightWeaponPosition;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         bulletLight = GetComponentInChildren<Light>(true).gameObject;
 
         animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
+        //rightWeaponPosition 부모
+        var go = Instantiate(currentWeapon.weaponGo, rightWeaponPosition);
+        go.transform.localScale = currentWeapon.weaponGo.transform.localScale;
+        go.transform.localPosition = currentWeapon.weaponGo.transform.localPosition;
+        go.transform.localRotation = currentWeapon.weaponGo.transform.localRotation;
+
+
         var vcs = FindObjectsOfType<CinemachineVirtualCamera>();
         foreach(var item in vcs)
         {
@@ -120,8 +128,8 @@ public partial class Player : Actor
         }
 
 
-        animator.SetFloat("DirX", move.x);
-        animator.SetFloat("DirY", move.z);
+        animator.SetFloat("DirX", transform.forward.x);
+        animator.SetFloat("DirY", transform.forward.z);
         animator.SetFloat("Speed", move.sqrMagnitude);
     }
 
