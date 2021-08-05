@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class Zombie : Actor
 {
@@ -189,11 +190,19 @@ public class Zombie : Actor
         StartCoroutine(DieCo());
     }
 
-    //private void OnDestroy() 함수에서 게임오브젝트 생성은 최대한 피해야한다!
+    public Material dieMaterial;
+    public float dieMaterialChangeTime = 4;
+
     private IEnumerator DieCo()
     {
+        var renderer = GetComponentsInChildren<Renderer>();
+        foreach(var item in renderer)
+            item.sharedMaterial = dieMaterial;
+
+        //DOTween.To(() => 1, !주의 1은 정수 -> 소수점 표현 못함 -> 꼭 1f 적어야함
+        DOTween.To(() => 1f, x => dieMaterial.SetFloat("_Progress", x), 0, dieMaterialChangeTime);
         yield return new WaitForSeconds(onDieDestroyDelay);
-        
+
         Destroy(gameObject);
     }
 
