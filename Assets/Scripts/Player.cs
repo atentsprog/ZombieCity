@@ -34,6 +34,7 @@ public partial class Player : Actor
 
         if(weaponInfo.bulletLight != null)
             bulletLight = weaponInfo.bulletLight.gameObject;
+        shootDelay = currentWeapon.delay;
 
         SetCinemachinCamera();
     }
