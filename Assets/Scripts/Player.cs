@@ -16,28 +16,45 @@ public partial class Player : Actor
     public bool isFiring = false;
     public StateType stateType = StateType.Idle;
 
+    public WeaponInfo mainWeapon;
+    public WeaponInfo subWeapon;
+
     public WeaponInfo currentWeapon;
     public Transform rightWeaponPosition;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
 
+        ChangeWeapon(mainWeapon);
+
+        SetCinemachinCamera();
+    }
+     
+    GameObject currentWeaponGo;
+    private void ChangeWeapon(WeaponInfo _weaponInfo)
+    {
+        Destroy(currentWeaponGo);
+        currentWeapon = _weaponInfo;
+
         animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
         //rightWeaponPosition 부모
         var weaponInfo = Instantiate(currentWeapon, rightWeaponPosition);
+        currentWeaponGo = weaponInfo.gameObject;
         weaponInfo.transform.localScale = currentWeapon.gameObject.transform.localScale;
         weaponInfo.transform.localPosition = currentWeapon.gameObject.transform.localPosition;
         weaponInfo.transform.localRotation = currentWeapon.gameObject.transform.localRotation;
         currentWeapon = weaponInfo;
-        currentWeapon.attackCollider.enabled = false;
+
+        if (currentWeapon.attackCollider)
+            currentWeapon.attackCollider.enabled = false;
+
         bulletPosition = weaponInfo.bulletPosition;
 
-        if(weaponInfo.bulletLight != null)
+        if (weaponInfo.bulletLight != null)
             bulletLight = weaponInfo.bulletLight.gameObject;
         shootDelay = currentWeapon.delay;
-
-        SetCinemachinCamera();
     }
+
     [ContextMenu("SetCinemachinCamera")]
     private void SetCinemachinCamera()
     {
@@ -63,8 +80,18 @@ public partial class Player : Actor
             Move();
             Fire();
             Roll();
+            if (Input.GetKeyDown(KeyCode.Tab))
+                ToggleChangeWeapon();
         }
     }
+
+    bool toggleWeapon = false;
+    void ToggleChangeWeapon()
+    {
+        ChangeWeapon(toggleWeapon == true ? mainWeapon : subWeapon);
+        toggleWeapon = !toggleWeapon;
+    }
+
 
     private void Roll()
     {
