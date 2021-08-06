@@ -25,11 +25,13 @@ public partial class Player : Actor
 
         animator.runtimeAnimatorController = currentWeapon.overrideAnimator;
         //rightWeaponPosition 부모
-        var go = Instantiate(currentWeapon.weaponGo, rightWeaponPosition);
-        go.transform.localScale = currentWeapon.weaponGo.transform.localScale;
-        go.transform.localPosition = currentWeapon.weaponGo.transform.localPosition;
-        go.transform.localRotation = currentWeapon.weaponGo.transform.localRotation;
+        var weaponInfo = Instantiate(currentWeapon, rightWeaponPosition);
+        weaponInfo.transform.localScale = currentWeapon.gameObject.transform.localScale;
+        weaponInfo.transform.localPosition = currentWeapon.gameObject.transform.localPosition;
+        weaponInfo.transform.localRotation = currentWeapon.gameObject.transform.localRotation;
 
+        bulletPosition = weaponInfo.bulletPosition;
+        bulletLight = weaponInfo.bulletLight.gameObject;
         SetCinemachinCamera();
     }
     [ContextMenu("SetCinemachinCamera")]
