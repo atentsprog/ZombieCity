@@ -26,7 +26,8 @@ public class MoveToPlayer : MonoBehaviour
             alreadyDone = true;
             agent = GetComponent<NavMeshAgent>();
             tweenResult = DOTween.To(() => agent.speed, (x) => agent.speed = x, maxSpeed, duration);
-
+            tweenResult.SetLink(gameObject);
+            //tweenResult.SetLink(gameObject, LinkBehaviour.KillOnDestroy);
             setDestinationCoHandle = StartCoroutine(SetDestinationCo(other.transform));
         }
     }
@@ -45,8 +46,8 @@ public class MoveToPlayer : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        tweenResult.Kill();
-    }
+    //private void OnDestroy()
+    //{
+    //    tweenResult.Kill(); < -대신 tweenResult.SetLink(gameObject); 사용
+    //}
 }
