@@ -48,14 +48,14 @@ MonoBehaviour:
   type: 1
   damage: 20
   overrideAnimator: {fileID: 22100000, guid: 368e5d699bde3ce44950bf7920ccf199, type: 2}
-  delay: 0.2
-  pushBackDistance: 0.1
+  delay: 1
+  pushBackDistance: 3
   bullet: {fileID: 0}
   bulletPosition: {fileID: 0}
   bulletLight: {fileID: 0}
   maxBulletCount: 6
-  attackStartTime: 0.1
-  attackTime: 3
+  attackStartTime: 0.3
+  attackTime: 0.4
   attackCollider: {fileID: 5041486728393553231}
 --- !u!1 &796739937278616818
 GameObject:

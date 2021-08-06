@@ -138,7 +138,8 @@ public class Zombie : Actor
         SetFsm_SelectAttackTargetOrAttackOrChase();
     }
 
-    internal void TakeHit(int damage, Vector3 toMoveDirection)
+    internal void TakeHit(int damage, Vector3 toMoveDirection
+        , float pushBackDistance = 0.1f)
     {
         base.TakeHit(damage);
 
@@ -149,7 +150,7 @@ public class Zombie : Actor
         }
 
         // 뒤로 밀려나게하자.
-        PushBackMove(toMoveDirection);
+        PushBackMove(toMoveDirection, pushBackDistance);
 
         CurrentFsm = TakeHitFSM;
     }
@@ -185,9 +186,9 @@ public class Zombie : Actor
         //animator.Play("Die");
         Destroy(gameObject, onDieDestroyDelay);
     }
-    public float moveBackDistance = 0.1f;
+    //public float moveBackDistance = 0.1f;
     public float moveBackNoise = 0.1f;
-    private void PushBackMove(Vector3 toMoveDirection)
+    private void PushBackMove(Vector3 toMoveDirection, float moveBackDistance)
     {
         toMoveDirection.x += Random.Range(-moveBackNoise, moveBackNoise);
         toMoveDirection.z += Random.Range(-moveBackNoise, moveBackNoise);

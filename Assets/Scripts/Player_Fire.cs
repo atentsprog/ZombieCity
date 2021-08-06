@@ -17,6 +17,7 @@ public partial class Player : Actor
             if (shootDelayEndTime < Time.time)
             {
                 animator.SetBool("Fire", true);
+
                 shootDelayEndTime = Time.time + shootDelay;
                 switch (currentWeapon.type)
                 {

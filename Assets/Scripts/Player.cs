@@ -186,6 +186,7 @@ public partial class Player : Actor
     {
         var zombie = other.GetComponent<Zombie>();
         zombie.TakeHit(currentWeapon.damage
-            , currentWeapon.gameObject.transform.forward);
+            , currentWeapon.gameObject.transform.forward
+            , currentWeapon.pushBackDistance);
     }
-}
+} 
