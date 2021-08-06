@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735812697880814803}
   - component: {fileID: 5242734277411140411}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,6 +251,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 66f60363ccba8e844b453c3a2fc07799, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 66f60363ccba8e844b453c3a2fc07799, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66f60363ccba8e844b453c3a2fc07799, type: 3}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 712273017150554685}
   - component: {fileID: 712273017150554682}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 632645032954944615}
   - component: {fileID: 5041486728393553231}
   - component: {fileID: 219356382}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 1163442025408392001}
   - component: {fileID: 7235817623838074279}
   - component: {fileID: 251547683002498565}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
