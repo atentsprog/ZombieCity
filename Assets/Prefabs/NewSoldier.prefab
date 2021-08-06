@@ -242,7 +242,7 @@ MonoBehaviour:
   damageColor: {r: 1, g: 0.43889013, b: 0.27735847, a: 1}
   isFiring: 0
   stateType: 0
-  currentWeapon: {fileID: 5242734277411140411, guid: 7420b29cb8191df4e8e39a98cd56d6bf, type: 3}
+  currentWeapon: {fileID: 712273017150554682, guid: c82fc0ca1e1f85340af5685e659a5cda, type: 3}
   rightWeaponPosition: {fileID: 1113377269545086295}
   rollingSpeedAC:
     serializedVersion: 2
