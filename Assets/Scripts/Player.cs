@@ -30,14 +30,20 @@ public partial class Player : Actor
         go.transform.localPosition = currentWeapon.weaponGo.transform.localPosition;
         go.transform.localRotation = currentWeapon.weaponGo.transform.localRotation;
 
+        InitCinemachinCamera();
+    }
 
+    [ContextMenu("InitCinemachinCamera")]
+    private void InitCinemachinCamera()
+    {
         var vcs = FindObjectsOfType<CinemachineVirtualCamera>();
-        foreach(var item in vcs)
+        foreach (var item in vcs)
         {
             item.Follow = transform;
             item.LookAt = transform;
         }
     }
+
     void Update()
     {
         if (Time.deltaTime == 0)
