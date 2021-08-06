@@ -12,6 +12,7 @@ public partial class Player : Actor
         TakeHit,
         Roll,
         Die,
+        Reload,
     }
     public bool isFiring = false;
     public StateType stateType = StateType.Idle;
@@ -80,9 +81,29 @@ public partial class Player : Actor
             Move();
             Fire();
             Roll();
+            ReloadBullet();
             if (Input.GetKeyDown(KeyCode.Tab))
                 ToggleChangeWeapon();
         }
+    }
+
+    private void ReloadBullet()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            StartCoroutine(ReloadBulletCo());
+        }
+    }
+
+    private IEnumerator ReloadBulletCo()
+    {
+        stateType = StateType.Reload;
+        animator.SetTrigger("Reload");
+        yield return new WaitForSeconds(reloadTime);
+        stateType = StateType.Idle;
+        int reloadCount = Math.Min(allBulletCoiunt, MaxBulletCountInClip);
+        bulletCountInClip = reloadCount;
+        allBulletCoiunt -= reloadCount;
     }
 
     bool toggleWeapon = false;
