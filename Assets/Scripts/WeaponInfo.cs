@@ -28,8 +28,13 @@ public class WeaponInfo : MonoBehaviour
     public int maxBulletCount = 500;       // 최대로 가질 수 있는 총알수.
     public float reloadTime = 1f;
 
+    bool init = false;
     internal void Init()
     {
+        if (init)
+            return;
+        init = true;
+
         allBulletCount = Math.Min(allBulletCount, maxBulletCount);
         int reloadCount = Math.Min(allBulletCount, maxBulletCountInClip);
         allBulletCount -= reloadCount;
