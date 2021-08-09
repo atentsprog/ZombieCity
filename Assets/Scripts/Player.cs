@@ -27,16 +27,21 @@ public partial class Player : Actor
         base.Awake();
         animator = GetComponentInChildren<Animator>();
 
+        if (mainWeapon)
+            mainWeapon.Init();
+        if (subWeapon)
+            subWeapon.Init();
+
         ChangeWeapon(mainWeapon);
 
         SetCinemachinCamera();
 
         HealthUI.Instance.SetGauge(hp, maxHp);
 
-        AmmoUI.Instance.SetBulletCount(bulletCountInClip
-            , maxBulletCountInClip
-            , allBulletCount + bulletCountInClip
-            , maxBulletCount);
+        AmmoUI.Instance.SetBulletCount(BulletCountInClip
+            , MaxBulletCountInClip
+            , AllBulletCount + BulletCountInClip
+            , MaxBulletCount);
     }
      
     GameObject currentWeaponGo;
@@ -57,7 +62,7 @@ public partial class Player : Actor
         if (currentWeapon.attackCollider)
             currentWeapon.attackCollider.enabled = false;
 
-        bulletPosition = weaponInfo.bulletPosition;
+        //bulletPosition = weaponInfo.bulletPosition;
 
         if (weaponInfo.bulletLight != null)
             bulletLight = weaponInfo.bulletLight.gameObject;
@@ -107,17 +112,17 @@ public partial class Player : Actor
     {
         stateType = StateType.Reload;
         animator.SetTrigger("Reload");
-        int reloadCount = Math.Min(allBulletCount, maxBulletCountInClip);
+        int reloadCount = Math.Min(AllBulletCount, MaxBulletCountInClip);
 
         AmmoUI.Instance.StartReload(reloadCount
-            , maxBulletCountInClip
-            , allBulletCount + reloadCount
-            , maxBulletCount
-            , reloadTime);
-        yield return new WaitForSeconds(reloadTime);
+            , MaxBulletCountInClip
+            , AllBulletCount
+            , MaxBulletCount
+            , ReloadTime);
+        yield return new WaitForSeconds(ReloadTime);
         stateType = StateType.Idle;
-        bulletCountInClip = reloadCount;
-        allBulletCount -= reloadCount;
+        BulletCountInClip = reloadCount;
+        AllBulletCount -= reloadCount;
     }
 
     bool toggleWeapon = false;
