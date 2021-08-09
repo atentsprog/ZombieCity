@@ -6,16 +6,10 @@ using UnityEngine;
 public class Actor : MonoBehaviour
 {
     public int hp = 100;
-    public int MaxHp;
     public float bloodEffectYPosition = 1.3f;
 
     public GameObject bloodParticle;
     protected Animator animator;
-
-    protected void Awake()
-    {
-        MaxHp = hp;
-    }
     protected void CreateBloodEffect()
     {
         var pos = transform.position;
