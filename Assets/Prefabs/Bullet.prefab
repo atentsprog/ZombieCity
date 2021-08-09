@@ -128,3 +128,5 @@ MonoBehaviour:
   speed: 20
   destroyTime: 1
   power: 20
+  randomRamage: 4
+  pushBackDistance: 3

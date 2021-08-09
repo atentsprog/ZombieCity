@@ -4,14 +4,15 @@ using UnityEngine;
 
 public partial class Player : Actor
 {
+    // todo:WeaponInfo로 옮겨야함.
     public int bulletCountInClip = 2;       // 탄창에 총알수
     public int MaxBulletCountInClip = 6;    // 탄창에 들어가는 최대수
     public int allBulletCount = 500;       // 가진 전체 총알수.
     public int MaxBulletCount;
     public float reloadTime = 1f;
 
-    public GameObject bullet;
-    public Transform bulletPosition;
+    //public GameObject bullet;
+    //public Transform bulletPosition;
 
 
     float shootDelayEndTime;
@@ -82,7 +83,8 @@ public partial class Player : Actor
     private IEnumerator InstantiateBulletAndFlashBulletCo()
     {
         yield return null; // 총쏘는 애니메이션 시작후에 총알 발사하기 위해서 1Frame쉼
-        Instantiate(bullet, bulletPosition.position, CalculateRecoil(transform.rotation));
+        GameObject bulletGo =  Instantiate(currentWeapon.bullet, currentWeapon.bulletPosition.position, CalculateRecoil(transform.rotation));
+        bulletGo.GetComponent<Bullet>().pushBackDistance = currentWeapon.pushBackDistance;
 
         bulletLight.SetActive(true);
         yield return new WaitForSeconds(bulletFlashTime);

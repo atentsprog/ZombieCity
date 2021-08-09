@@ -55,7 +55,7 @@ public partial class Player : Actor
         if (currentWeapon.attackCollider)
             currentWeapon.attackCollider.enabled = false;
 
-        bulletPosition = weaponInfo.bulletPosition;
+        //bulletPosition = weaponInfo.bulletPosition;
 
         if (weaponInfo.bulletLight != null)
             bulletLight = weaponInfo.bulletLight.gameObject;

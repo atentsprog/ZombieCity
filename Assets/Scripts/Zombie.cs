@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -194,8 +195,12 @@ public class Zombie : Actor
         toMoveDirection.z += Random.Range(-moveBackNoise, moveBackNoise);
         toMoveDirection.y = 0;
         toMoveDirection.Normalize();
-        transform.Translate(toMoveDirection * moveBackDistance, Space.World);
+        //transform.Translate(toMoveDirection * moveBackDistance, Space.World);
+        transform.DOMove(transform.position + toMoveDirection * moveBackDistance
+            , pushBackDuration).SetEase(pushBackEase);
     }
+    public Ease pushBackEase = Ease.OutQuart;
+    public float pushBackDuration = 0.3f;
 
     public float TakeHitStopSpeedTime = 0.1f;
     private void SetOriginalSpeed()
