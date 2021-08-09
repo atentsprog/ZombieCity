@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -186,15 +187,21 @@ public class Zombie : Actor
         //animator.Play("Die");
         Destroy(gameObject, onDieDestroyDelay);
     }
-    //public float moveBackDistance = 0.1f;
+    public float moveBackDistance = 1f;
     public float moveBackNoise = 0.1f;
-    private void PushBackMove(Vector3 toMoveDirection, float moveBackDistance)
+    public float moveBackDuration = 0.5f;
+    public Ease moveBackEase = Ease.OutQuart;
+    private void PushBackMove(Vector3 toMoveDirection, float _moveBackDistance)
     {
         toMoveDirection.x += Random.Range(-moveBackNoise, moveBackNoise);
         toMoveDirection.z += Random.Range(-moveBackNoise, moveBackNoise);
         toMoveDirection.y = 0;
         toMoveDirection.Normalize();
-        transform.Translate(toMoveDirection * moveBackDistance, Space.World);
+
+        //transform.Translate(toMoveDirection * moveBackDistance * moveBackDistance, Space.World);
+        transform.DOMove(transform.position + 
+            toMoveDirection * _moveBackDistance * moveBackDistance, moveBackDuration)
+            .SetEase(moveBackEase);
     }
 
     public float TakeHitStopSpeedTime = 0.1f;
