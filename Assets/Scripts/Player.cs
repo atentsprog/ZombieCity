@@ -107,9 +107,15 @@ public partial class Player : Actor
     {
         stateType = StateType.Reload;
         animator.SetTrigger("Reload");
+        int reloadCount = Math.Min(allBulletCount, maxBulletCountInClip);
+
+        AmmoUI.Instance.StartReload(reloadCount
+            , maxBulletCountInClip
+            , allBulletCount + reloadCount
+            , maxBulletCount
+            , reloadTime);
         yield return new WaitForSeconds(reloadTime);
         stateType = StateType.Idle;
-        int reloadCount = Math.Min(allBulletCount, maxBulletCountInClip);
         bulletCountInClip = reloadCount;
         allBulletCount -= reloadCount;
     }

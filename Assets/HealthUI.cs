@@ -26,7 +26,7 @@ where T : SingletonBase
         print(testInt);
 
         float percent = (float)value / maxValue; // 0.5 * images.Length(8) = 4
-        int currentCount = Mathf.RoundToInt(percent * images.Length);
+        int currentCount = Mathf.RoundToInt(percent * images.Length) - 1;
         for (int i = 0; i < images.Length; i++)
         {
             if (i == currentCount)
@@ -35,6 +35,29 @@ where T : SingletonBase
                 images[i].sprite = enable;
             else
                 images[i].sprite = disable;
+        }
+    }
+    protected IEnumerator SetAnimateGaugeCo(int value
+        , int maxValue, float duration)
+    {
+        foreach (var item in images)
+            item.sprite = disable;
+
+        float timePerEach = duration / images.Length;
+
+        float percent = (float)value / maxValue; // 0.5 * images.Length(8) = 4
+        int currentCount = Mathf.RoundToInt(percent * images.Length) - 1;
+
+        for (int i = 0; i < images.Length; i++)
+        {
+            if (i == currentCount)
+                images[i].sprite = current;
+            else if (i < currentCount)
+                images[i].sprite = enable;
+            else
+                images[i].sprite = disable;
+
+            yield return new WaitForSeconds(timePerEach);
         }
     }
 }
