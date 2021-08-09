@@ -24,7 +24,7 @@ where T : SingletonMonoBehavior<T>
 
     internal void SetGuage(int current, int max)
     {
-        print(current);
+        //print(current);
         countText.text = $"{current}/{max}";
 
         float fPercent = (float)current / max; // 1

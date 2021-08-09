@@ -20,27 +20,38 @@ public partial class Player : Actor
         if (Input.GetMouseButton(0))
         {
             isFiring = true;
-            if (shootDelayEndTime < Time.time && bulletCountInClip > 0)
+            if (shootDelayEndTime < Time.time)
             {
-                bulletCountInClip--;
-                AmmoUI.Instance.SetGuage(bulletCountInClip, MaxBulletCountInClip
-                    , allBulletCount + bulletCountInClip, MaxBulletCount);
-                animator.SetTrigger("StartFire");
-                //animator.SetBool("Fire", true);
-
-                shootDelayEndTime = Time.time + shootDelay;
-                switch (currentWeapon.type)
+                if (bulletCountInClip > 0)
                 {
-                    case WeaponInfo.WeaponType.Gun:
-                        IncreaseRecoil();
-                        currentWeapon.StartCoroutine(InstantiateBulletAndFlashBulletCo());
-                        break;
+                    bulletCountInClip--;
+                    AmmoUI.Instance.SetGuage(bulletCountInClip, MaxBulletCountInClip
+                        , allBulletCount + bulletCountInClip, MaxBulletCount);
+                    animator.SetTrigger("StartFire");
+                    //animator.SetBool("Fire", true);
 
-                    case WeaponInfo.WeaponType.Melee:
-                        // 무기의 컬라이더를 활성화 하자. 
-                        currentWeapon.StartCoroutine(MeleeAttackCo());
-                        break;
-                }   
+                    shootDelayEndTime = Time.time + shootDelay;
+                    switch (currentWeapon.type)
+                    {
+                        case WeaponInfo.WeaponType.Gun:
+                            IncreaseRecoil();
+                            currentWeapon.StartCoroutine(InstantiateBulletAndFlashBulletCo());
+                            break;
+
+                        case WeaponInfo.WeaponType.Melee:
+                            // 무기의 컬라이더를 활성화 하자. 
+                            currentWeapon.StartCoroutine(MeleeAttackCo());
+                            break;
+                    }
+                }
+                else
+                {
+                    if (reloadTextDelayEndTime < Time.time)
+                    {
+                        reloadTextDelayEndTime = Time.time + reloadTextDelay;
+                        CreateTalkText("Reload!", Color.red);
+                    }
+                }
             }
         }
         else
@@ -48,6 +59,8 @@ public partial class Player : Actor
             Endfiring();
         }
     }
+    public float reloadTextDelay = 2;
+    float reloadTextDelayEndTime;
 
     private IEnumerator MeleeAttackCo()
     {

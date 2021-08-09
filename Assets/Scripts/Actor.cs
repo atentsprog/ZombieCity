@@ -25,12 +25,24 @@ public class Actor : MonoBehaviour
 
     public static void CreateTextEffect(int number, Vector3 position, Color color)
     {
-        GameObject memoryGo = (GameObject)Resources.Load("TextEffect");
+        CreateTextPrefab("TextEffect", number.ToNumber(), position, color);
+    }
+
+    public void CreateTalkText(string text, Color color)
+    {
+        CreateTextPrefab("TalkText", text, transform.position, color, transform);
+    }
+
+    private static void CreateTextPrefab(string prefabName, string text, Vector3 position, Color color, Transform parent = null)
+    {
+        GameObject memoryGo = (GameObject)Resources.Load(prefabName);
         GameObject go = Instantiate(memoryGo, position, Camera.main.transform.rotation);
-        TextMeshPro textMeshPro = go.GetComponent<TextMeshPro>();
-        textMeshPro.text = number.ToNumber();
+        go.transform.SetParent(parent);
+        TextMeshPro textMeshPro = go.GetComponentInChildren<TextMeshPro>();
+        textMeshPro.text = text;
         textMeshPro.color = color;
     }
+
     public Color damageColor = Color.white;
     protected void TakeHit(int damage)
     {
