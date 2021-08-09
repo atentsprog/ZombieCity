@@ -6,7 +6,8 @@ public partial class Player : Actor
 {
     public int bulletCountInClip = 2;       // 탄창에 총알수
     public int MaxBulletCountInClip = 6;    // 탄창에 들어가는 최대수
-    public int allBulletCoiunt = 500;       // 가진 전체 총알수.
+    public int allBulletCount = 500;       // 가진 전체 총알수.
+    public int MaxBulletCount;
     public float reloadTime = 1f;
 
     public GameObject bullet;
@@ -22,6 +23,8 @@ public partial class Player : Actor
             if (shootDelayEndTime < Time.time && bulletCountInClip > 0)
             {
                 bulletCountInClip--;
+                AmmoUI.Instance.SetGuage(bulletCountInClip, MaxBulletCountInClip
+                    , allBulletCount + bulletCountInClip, MaxBulletCount);
                 animator.SetTrigger("StartFire");
                 //animator.SetBool("Fire", true);
 

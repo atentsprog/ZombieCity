@@ -22,13 +22,19 @@ public partial class Player : Actor
 
     public WeaponInfo currentWeapon;
     public Transform rightWeaponPosition;
-    private void Awake()
+    new protected void Awake()
     {
+        base.Awake();
         animator = GetComponentInChildren<Animator>();
 
         ChangeWeapon(mainWeapon);
 
         SetCinemachinCamera();
+
+        MaxBulletCount = allBulletCount + bulletCountInClip;
+        AmmoUI.Instance.SetGuage(bulletCountInClip, MaxBulletCountInClip
+           , allBulletCount + bulletCountInClip, MaxBulletCount);
+        HealthUI.Instance.SetGuage(hp, MaxHp);
     }
      
     GameObject currentWeaponGo;
@@ -99,11 +105,12 @@ public partial class Player : Actor
     {
         stateType = StateType.Reload;
         animator.SetTrigger("Reload");
+        int reloadCount = Math.Min(allBulletCount, MaxBulletCountInClip);
+        AmmoUI.Instance.Restore(reloadTime);
         yield return new WaitForSeconds(reloadTime);
         stateType = StateType.Idle;
-        int reloadCount = Math.Min(allBulletCoiunt, MaxBulletCountInClip);
         bulletCountInClip = reloadCount;
-        allBulletCoiunt -= reloadCount;
+        allBulletCount -= reloadCount;
     }
 
     bool toggleWeapon = false;
@@ -210,6 +217,7 @@ public partial class Player : Actor
     {
         base.TakeHit(damage);
 
+        HealthUI.Instance.SetGuage(hp, MaxHp);
         animator.SetTrigger("TakeHit");
 
         if(hp <= 0)
