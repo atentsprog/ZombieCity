@@ -5,11 +5,23 @@ using UnityEngine;
 public partial class Player : Actor
 {
     // todo:WeaponInfo로 옮겨야함.
-    public int bulletCountInClip = 2;       // 탄창에 총알수
-    public int MaxBulletCountInClip = 6;    // 탄창에 들어가는 최대수
-    public int allBulletCount = 500;       // 가진 전체 총알수.
-    public int MaxBulletCount;
-    public float reloadTime = 1f;
+    public int bulletCountInClip    // 탄창에 총알수
+    {
+        get => currentWeapon.bulletCountInClip;      
+        set => currentWeapon.bulletCountInClip = value;
+    }
+    public int MaxBulletCountInClip => currentWeapon.MaxBulletCountInClip;    // 탄창에 들어가는 최대수
+    public int allBulletCount       // 가진 전체 총알수.
+    {
+        get => currentWeapon.allBulletCount;      
+        set => currentWeapon.allBulletCount = value;
+    }      
+    public int MaxBulletCount
+    {
+        get => currentWeapon.MaxBulletCount;      
+        set => currentWeapon.MaxBulletCount = value;
+    }
+    public float reloadTime => currentWeapon.reloadTime;
 
     //public GameObject bullet;
     //public Transform bulletPosition;

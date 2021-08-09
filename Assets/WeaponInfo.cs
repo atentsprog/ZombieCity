@@ -21,6 +21,12 @@ public class WeaponInfo : MonoBehaviour
     public float delay = 0.2f;
     public float pushBackDistance = 0.1f;
 
+    public int bulletCountInClip = 2;       // 탄창에 총알수
+    public int MaxBulletCountInClip = 6;    // 탄창에 들어가는 최대수
+    public int allBulletCount = 500;       // 가진 전체 총알수.
+    public int MaxBulletCount;
+    public float reloadTime = 1f;
+
     [Header("총")]
     public GameObject bullet;
     public Transform bulletPosition;
