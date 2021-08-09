@@ -18,6 +18,7 @@ public partial class Player : Actor
             {
                 animator.SetTrigger("StartFire");
                 //animator.SetBool("Fire", true);
+                AmmoUI.Instance.SetBulletCount(4, 6, 500, 500);
 
                 shootDelayEndTime = Time.time + shootDelay;
                 switch (currentWeapon.type)
