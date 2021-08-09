@@ -32,6 +32,11 @@ public partial class Player : Actor
         SetCinemachinCamera();
 
         HealthUI.Instance.SetGauge(hp, maxHp);
+
+        AmmoUI.Instance.SetBulletCount(bulletCountInClip
+            , maxBulletCountInClip
+            , allBulletCount + bulletCountInClip
+            , maxBulletCount);
     }
      
     GameObject currentWeaponGo;
@@ -104,9 +109,9 @@ public partial class Player : Actor
         animator.SetTrigger("Reload");
         yield return new WaitForSeconds(reloadTime);
         stateType = StateType.Idle;
-        int reloadCount = Math.Min(allBulletCoiunt, MaxBulletCountInClip);
+        int reloadCount = Math.Min(allBulletCount, maxBulletCountInClip);
         bulletCountInClip = reloadCount;
-        allBulletCoiunt -= reloadCount;
+        allBulletCount -= reloadCount;
     }
 
     bool toggleWeapon = false;

@@ -5,8 +5,9 @@ using UnityEngine;
 public partial class Player : Actor
 {
     public int bulletCountInClip = 2;       // 탄창에 총알수
-    public int MaxBulletCountInClip = 6;    // 탄창에 들어가는 최대수
-    public int allBulletCoiunt = 500;       // 가진 전체 총알수.
+    public int maxBulletCountInClip = 6;    // 탄창에 들어가는 최대수
+    public int allBulletCount = 500;       // 가진 전체 총알수.
+    public int maxBulletCount = 500;       // 최대로 가질 수 있는 총알수.
     public float reloadTime = 1f;
 
     public GameObject bullet;
@@ -24,7 +25,10 @@ public partial class Player : Actor
                 bulletCountInClip--;
                 animator.SetTrigger("StartFire");
                 //animator.SetBool("Fire", true);
-                AmmoUI.Instance.SetBulletCount(4, 6, 500, 500);
+                AmmoUI.Instance.SetBulletCount(bulletCountInClip
+                    , maxBulletCountInClip
+                    , allBulletCount + bulletCountInClip
+                    , maxBulletCount);
 
                 shootDelayEndTime = Time.time + shootDelay;
                 switch (currentWeapon.type)

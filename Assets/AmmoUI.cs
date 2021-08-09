@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class AmmoUI : GaugeUI<AmmoUI>
 {
-    internal void SetBulletCount(int v1, int v2, int v3, int v4)
+    internal void SetBulletCount(int bulletCountInClip, int maxBulletCountInClip
+        , int allBulletCount, int maxBulletCount)
     {
-        SetGauge(v1, v2);
+        SetGauge(bulletCountInClip, maxBulletCountInClip);
         //v3, int v4
-
+        valueText.text = $"{allBulletCount}/{maxBulletCount}";
     }
 }

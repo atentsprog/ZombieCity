@@ -5,11 +5,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthUI : GaugeUI<HealthUI>{}
+public class HealthUI : GaugeUI<HealthUI>
+{}
 public class GaugeUI<T> : SingletonMonoBehavior<T>
 where T : SingletonBase
 {
-    TextMeshProUGUI valueText;
+    protected TextMeshProUGUI valueText;
     public Image[] images; // 8
     public Sprite enable, current, disable;
     protected override void OnInit()
