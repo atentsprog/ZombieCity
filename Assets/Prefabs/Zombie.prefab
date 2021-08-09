@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 4129650614387924152}
   - component: {fileID: 1013158537}
   - component: {fileID: 1013158538}
+  - component: {fileID: 4615037280825167938}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Zombie
@@ -158,7 +159,9 @@ MonoBehaviour:
     m_Bits: 128
   power: 20
   rewardScore: 100
-  onDieDestroyDelay: 4
+  onDieDestroyDelay: 1
+  dieMaterial: {fileID: 2100000, guid: 1d5573e52ae7dc74f9fe25150f50160f, type: 2}
+  dieMaterialDuration: 3
   moveBackDistance: 1
   moveBackNoise: 0.1
   moveBackDuration: 0.5
@@ -215,6 +218,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.98, z: 0}
+--- !u!114 &4615037280825167938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4129650614387924149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c1007d5ff955e54f8c2a01fd2797ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItems:
+  - ratio: 1
+    go: {fileID: 995379004141744623, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
+  - ratio: 0.5
+    go: {fileID: 995379004141744623, guid: 1fa8f29c25f77854db88edcf3fc98c4a, type: 3}
+  eventType: 0
 --- !u!1001 &4129650615626348477
 PrefabInstance:
   m_ObjectHideFlags: 0
