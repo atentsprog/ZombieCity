@@ -232,7 +232,7 @@ public partial class Player : Actor
         {
             Vector3 hitPoint = ray.GetPoint(enter);
             Vector3 dir = hitPoint - transform.position;
-            dir.y = transform.position.y;
+            dir.y = 0;
             dir.Normalize();
             transform.forward = dir;
         }
