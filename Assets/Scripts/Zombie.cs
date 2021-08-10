@@ -8,11 +8,13 @@ using Random = UnityEngine.Random;
 
 public class Zombie : Actor
 {
+    public static List<Zombie> Zombies = new List<Zombie>();
     public Transform target;
     NavMeshAgent agent;
     float originalSpeed;
     IEnumerator Start()
     {
+        Zombies.Add(this);
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         target = FindObjectOfType<Player>().transform;  // 
@@ -146,6 +148,8 @@ public class Zombie : Actor
 
         if (hp <= 0)
         {
+            Zombies.Remove(this);
+            FindObjectOfType<Player>().RetargetingLookat();
             GetComponent<Collider>().enabled = false;
             animator.SetBool("Die", true);
         }

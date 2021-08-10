@@ -4180,7 +4180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 568024672}
-  m_PathPosition: 4.970077
+  m_PathPosition: 3.71904
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -4466,7 +4466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1426666346}
-  m_PathPosition: 9.559389
+  m_PathPosition: 9.625813
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -7598,7 +7598,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1991226514}
-  m_LocalRotation: {x: -0.0108697815, y: -0.10113968, z: -0.99481225, w: 0.0011050553}
+  m_LocalRotation: {x: -0.010869772, y: -0.10113969, z: -0.99481225, w: 0.0011050544}
   m_LocalPosition: {x: 1.4242973, y: -0.00000012451602, z: -23.463766}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8105,6 +8105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 4129650614387924149, guid: 96177ed1074c0264b946e9780eb68506, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4129650614387924150, guid: 96177ed1074c0264b946e9780eb68506, type: 3}
       propertyPath: target
       value: 
@@ -8317,6 +8321,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1437577470, guid: 2178bb6a622b67941a16aeae5121aa8f, type: 3}
+      propertyPath: m_Data.m_SourceObjects.m_Length
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437577470, guid: 2178bb6a622b67941a16aeae5121aa8f, type: 3}
+      propertyPath: m_Data.m_SourceObjects.m_Item0.weight
+      value: 0.18
+      objectReference: {fileID: 0}
     - target: {fileID: 1536420034425246543, guid: 2178bb6a622b67941a16aeae5121aa8f, type: 3}
       propertyPath: m_RootOrder
       value: 20

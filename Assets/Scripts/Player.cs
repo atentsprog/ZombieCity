@@ -44,13 +44,18 @@ public partial class Player : Actor
             , MaxBulletCount);
     }
 
-    private IEnumerator Start()
+    Coroutine settingLookAtTargetCoHandle;
+    private void Start()
+    {
+        settingLookAtTargetCoHandle = StartCoroutine(SettingLookAtTargetCo());
+    }
+    private IEnumerator SettingLookAtTargetCo()
     {
         MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
         RigBuilder rigBuilder = GetComponentInChildren<RigBuilder>();
         while ( stateType != StateType.Die )
         {
-            List<Zombie> allZombies = new List<Zombie>(FindObjectsOfType<Zombie>());
+            List<Zombie> allZombies = Zombie.Zombies;
             Transform lastTarget = null;
             if (allZombies.Count > 0)
             {
@@ -71,6 +76,18 @@ public partial class Player : Actor
             yield return new WaitForSeconds(1);
         }
     }
+
+    internal void RetargetingLookat()
+    {
+        MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
+        multiAimConstraint.data.sourceObjects = new WeightedTransformArray(); 
+        // multiAimConstraint.data.sourceObjects.Clear()시 실패했음. 이유모름.
+        GetComponentInChildren<RigBuilder>().Build();
+
+        StopCoroutine(settingLookAtTargetCoHandle);
+        settingLookAtTargetCoHandle = StartCoroutine(SettingLookAtTargetCo());
+    }
+
 
     private void InitWeapon(WeaponInfo weaponInfo)
     {
