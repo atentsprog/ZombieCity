@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System.Linq;
+using UnityEngine.Animations.Rigging;
+
 public partial class Player : Actor
 {
     public enum StateType
@@ -39,6 +42,34 @@ public partial class Player : Actor
             , MaxBulletCountInClip
             , AllBulletCount + BulletCountInClip
             , MaxBulletCount);
+    }
+
+    private IEnumerator Start()
+    {
+        MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
+        RigBuilder rigBuilder = GetComponentInChildren<RigBuilder>();
+        while ( stateType != StateType.Die )
+        {
+            List<Zombie> allZombies = new List<Zombie>(FindObjectsOfType<Zombie>());
+            Transform lastTarget = null;
+            if (allZombies.Count > 0)
+            {
+                var nearestZombie = allZombies.OrderBy(x => Vector3.Distance(x.transform.position, transform.position))
+                    .First();
+
+                if (lastTarget != nearestZombie.transform)
+                {
+                    lastTarget = nearestZombie.transform;
+                    var array = multiAimConstraint.data.sourceObjects;
+                    array.Clear();
+                    array.Add(new WeightedTransform(lastTarget, 1));
+                    multiAimConstraint.data.sourceObjects = array;
+                    rigBuilder.Build();
+                }
+            }
+
+            yield return new WaitForSeconds(1);
+        }
     }
 
     private void InitWeapon(WeaponInfo weaponInfo)
