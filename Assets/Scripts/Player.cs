@@ -57,11 +57,11 @@ public partial class Player : Actor
         Transform lastTarget = null;
         while ( stateType != StateType.Die )
         {
-            float y = 0f;
+            float y = 0.36f;
             List<Zombie> allZombies = Zombie.Zombies;
             if (allZombies.Count > 0)
             {
-                y = 0.13f;
+                y = 0.39f;
                 var nearestZombie = allZombies.OrderBy(x => Vector3.Distance(x.transform.position, transform.position))
                     .First();
 
