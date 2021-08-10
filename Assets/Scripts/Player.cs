@@ -277,18 +277,27 @@ public partial class Player : Actor
             float _speed = isFiring ? speedWhileShooting : speed;
             transform.Translate(move * _speed * Time.deltaTime, Space.World);
 
+            float forwardDegree = transform.forward.VectorToDegree();
+            float moveDegree = move.VectorToDegree();
+            float dirRadian = (moveDegree - forwardDegree + 90) * Mathf.PI / 180; //라디안값
+            Vector3 dir;
+            dir.x = Mathf.Cos(dirRadian);// 
+            dir.z = Mathf.Sin(dirRadian);//
 
-            //* transform.forward 는 마우스 방향이다
-            if (Mathf.RoundToInt(transform.forward.x) == 1 || Mathf.RoundToInt(transform.forward.x) == -1)
-            {
-                animator.SetFloat("DirX", transform.forward.z * move.z);
-                animator.SetFloat("DirY", transform.forward.x * move.x);
-            }
-            else
-            {
-                animator.SetFloat("DirX", transform.forward.x * move.x);
-                animator.SetFloat("DirY", transform.forward.z * move.z);
-            }
+            animator.SetFloat("DirX", dir.x);
+            animator.SetFloat("DirY", dir.z);
+
+            ////* transform.forward 는 마우스 방향이다
+            //if (Mathf.RoundToInt(transform.forward.x) == 1 || Mathf.RoundToInt(transform.forward.x) == -1)
+            //{
+            //    animator.SetFloat("DirX", transform.forward.z * move.z);
+            //    animator.SetFloat("DirY", transform.forward.x * move.x);
+            //}
+            //else
+            //{
+            //    animator.SetFloat("DirX", transform.forward.x * move.x);
+            //    animator.SetFloat("DirY", transform.forward.z * move.z);
+            //}
 
         }
 
