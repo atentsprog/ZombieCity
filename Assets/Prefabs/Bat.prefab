@@ -50,10 +50,10 @@ MonoBehaviour:
   overrideAnimator: {fileID: 22100000, guid: 368e5d699bde3ce44950bf7920ccf199, type: 2}
   delay: 0.3
   pushBackDistance: 3
-  bulletCountInClip: 0
-  maxBulletCountInClip: 1000
-  allBulletCount: 1000
-  maxBulletCount: 1000
+  bulletCountInClip: 10
+  maxBulletCountInClip: 10
+  allBulletCount: 100
+  maxBulletCount: 100
   reloadTime: 1
   bullet: {fileID: 0}
   bulletPosition: {fileID: 0}

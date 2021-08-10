@@ -26,11 +26,8 @@ public partial class Player : Actor
     {
         base.Awake();
         animator = GetComponentInChildren<Animator>();
-
-        if (mainWeapon)
-            mainWeapon.Init();
-        if (subWeapon)
-            subWeapon.Init();
+        InitWeapon(mainWeapon);
+        InitWeapon(subWeapon);
 
         ChangeWeapon(mainWeapon);
 
@@ -43,7 +40,17 @@ public partial class Player : Actor
             , AllBulletCount + BulletCountInClip
             , MaxBulletCount);
     }
-     
+
+    private void InitWeapon(WeaponInfo weaponInfo)
+    {
+        if (weaponInfo)
+        {
+            weaponInfo = Instantiate(weaponInfo, transform);
+            weaponInfo.Init();
+            weaponInfo.gameObject.SetActive(false);
+        }
+    }
+
     GameObject currentWeaponGo;
     private void ChangeWeapon(WeaponInfo _weaponInfo)
     {
