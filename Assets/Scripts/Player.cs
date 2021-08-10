@@ -54,11 +54,11 @@ public partial class Player : Actor
     {
         MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
         RigBuilder rigBuilder = GetComponentInChildren<RigBuilder>();
+        Transform lastTarget = null;
         while ( stateType != StateType.Die )
         {
             float y = 0f;
             List<Zombie> allZombies = Zombie.Zombies;
-            Transform lastTarget = null;
             if (allZombies.Count > 0)
             {
                 y = 0.13f;
