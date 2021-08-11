@@ -57,11 +57,9 @@ public partial class Player : Actor
         Transform lastTarget = null;
         while ( stateType != StateType.Die )
         {
-            float y = 0.36f;
             List<Zombie> allZombies = Zombie.Zombies;
             if (allZombies.Count > 0)
             {
-                y = 0.39f;
                 var nearestZombie = allZombies.OrderBy(x => Vector3.Distance(x.transform.position, transform.position))
                     .First();
 
@@ -76,10 +74,6 @@ public partial class Player : Actor
                 }
             }
 
-            // multiAimConstraint 에 타겟이 있으면 "Bip001 Pelvis" 가 아래로 0.13 내려가는 문제 때문에 임시 로직 추가함
-            var pos = animator.transform.parent.localPosition;
-            pos.y = y;
-            animator.transform.parent.localPosition = pos;
             yield return new WaitForSeconds(1);
         }
     }
