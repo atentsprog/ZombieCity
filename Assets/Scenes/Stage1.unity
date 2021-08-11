@@ -4595,7 +4595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1426666346}
-  m_PathPosition: 4.986647
+  m_PathPosition: 3.199476
   m_PositionUnits: 1
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -7216,7 +7216,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828821307}
-  m_LocalRotation: {x: 0.01974047, y: -0.2954386, z: -0.9551383, w: -0.0061060674}
+  m_LocalRotation: {x: 0.019740505, y: -0.2954386, z: -0.95513827, w: -0.0061060796}
   m_LocalPosition: {x: 2.687582, y: 0.00000024188125, z: -29.275272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7428,11 +7428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bfa9adb1b748944085607cdafb77e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeUiInite: 0
   currentWaveIndex: 0
   waves:
-  - spawnCount: 10
+  - spawnCount: 3
     monster: {fileID: 4129650614387924149, guid: 96177ed1074c0264b946e9780eb68506, type: 3}
-    time: 20
+    time: 30
   - spawnCount: 20
     monster: {fileID: 4129650614387924149, guid: 96177ed1074c0264b946e9780eb68506, type: 3}
     time: 20
@@ -8033,6 +8034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d12a50a1bd12a4ca1266a8b7678d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeUiInite: 0
   dayColor: {r: 0.74509805, g: 0.6156863, b: 0.64705884, a: 1}
   nightColor: {r: 0.123397864, g: 0.11974011, b: 0.2924528, a: 1}
   changeDuration: 3
