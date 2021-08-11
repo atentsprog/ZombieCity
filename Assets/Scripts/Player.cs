@@ -49,13 +49,13 @@ public partial class Player : Actor
     {
         settingLookAtTargetCoHandle = StartCoroutine(SettingLookAtTargetCo());
     }
+
     private IEnumerator SettingLookAtTargetCo()
     {
         MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
         RigBuilder rigBuilder = GetComponentInChildren<RigBuilder>();
         while (stateType != StateType.Die)
         {
-            float yPosition = 0;
             List<Zombie> allZombies = Zombie.Zombies;
             Transform lastTarget = null;
             if (allZombies.Count > 0)
@@ -65,7 +65,6 @@ public partial class Player : Actor
 
                 if (lastTarget != nearestZombie.transform)
                 { 
-                    yPosition = 0.13f;
                     lastTarget = nearestZombie.transform;
                     var array = multiAimConstraint.data.sourceObjects;
                     array.Clear();
@@ -74,11 +73,19 @@ public partial class Player : Actor
                     rigBuilder.Build();
                 }
             }
-            var pos = animator.transform.parent.position;
-            pos.y = yPosition;
-            animator.transform.parent.position = pos;
+
             yield return new WaitForSeconds(1);
         }
+    }
+    [ContextMenu("빌드")]
+    void Build()
+    {
+        GetComponentInChildren<RigBuilder>().Build();
+    }
+    [ContextMenu("정지")]
+    void Stop()
+    {
+        StopCoroutine(settingLookAtTargetCoHandle);
     }
 
     [ContextMenu("빌드")]
@@ -94,6 +101,7 @@ public partial class Player : Actor
     }
     internal void RetargetingLookat()
     {
+        print("RetargetingLookat");
         MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
         multiAimConstraint.data.sourceObjects = new WeightedTransformArray(); 
         // multiAimConstraint.data.sourceObjects.Clear()시 실패했음. 이유모름.
