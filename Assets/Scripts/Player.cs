@@ -53,8 +53,9 @@ public partial class Player : Actor
     {
         MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
         RigBuilder rigBuilder = GetComponentInChildren<RigBuilder>();
-        while ( stateType != StateType.Die )
+        while (stateType != StateType.Die)
         {
+            float yPosition = 0;
             List<Zombie> allZombies = Zombie.Zombies;
             Transform lastTarget = null;
             if (allZombies.Count > 0)
@@ -63,7 +64,8 @@ public partial class Player : Actor
                     .First();
 
                 if (lastTarget != nearestZombie.transform)
-                {
+                { 
+                    yPosition = 0.13f;
                     lastTarget = nearestZombie.transform;
                     var array = multiAimConstraint.data.sourceObjects;
                     array.Clear();
@@ -72,11 +74,24 @@ public partial class Player : Actor
                     rigBuilder.Build();
                 }
             }
-
+            var pos = animator.transform.parent.position;
+            pos.y = yPosition;
+            animator.transform.parent.position = pos;
             yield return new WaitForSeconds(1);
         }
     }
 
+    [ContextMenu("빌드")]
+    void TestBuild()
+    {
+        GetComponentInChildren<RigBuilder>().Build();
+    }
+
+    [ContextMenu("끄기")]
+    void End()
+    {
+        StopCoroutine(settingLookAtTargetCoHandle);
+    }
     internal void RetargetingLookat()
     {
         MultiAimConstraint multiAimConstraint = GetComponentInChildren<MultiAimConstraint>();
@@ -232,7 +247,7 @@ public partial class Player : Actor
         {
             Vector3 hitPoint = ray.GetPoint(enter);
             Vector3 dir = hitPoint - transform.position;
-            dir.y = transform.position.y;
+            dir.y = 0;
             dir.Normalize();
             transform.forward = dir;
         }
@@ -259,18 +274,35 @@ public partial class Player : Actor
             float _speed = isFiring ? speedWhileShooting : speed;
             transform.Translate(move * _speed * Time.deltaTime, Space.World);
 
+            //방향을 앵글로 전환하기.
+            //앵글을 방향으로 전환하기.
+            //public static float VectorToDegree(this Vector3 v)
+            //{
+            //    float radian = Mathf.Atan2(v.z, v.x);
+            //    return (radian * Mathf.Rad2Deg);
+            //}
 
-            //* transform.forward 는 마우스 방향이다
-            if (Mathf.RoundToInt(transform.forward.x) == 1 || Mathf.RoundToInt(transform.forward.x) == -1)
-            {
-                animator.SetFloat("DirX", transform.forward.z * move.z);
-                animator.SetFloat("DirY", transform.forward.x * move.x);
-            }
-            else
-            {
-                animator.SetFloat("DirX", transform.forward.x * move.x);
-                animator.SetFloat("DirY", transform.forward.z * move.z);
-            }
+            float forwardDegree = transform.forward.VectorToDegree();
+            float moveDegree = move.VectorToDegree();
+            float dirRadian = (moveDegree - forwardDegree + 90) * Mathf.PI / 180; //라디안값
+            Vector3 dir;
+            dir.x = Mathf.Cos(dirRadian);// 
+            dir.z = Mathf.Sin(dirRadian);//
+
+            animator.SetFloat("DirX", dir.x);
+            animator.SetFloat("DirY", dir.z);
+
+            ////* transform.forward 는 마우스 방향이다
+            //if (Mathf.RoundToInt(transform.forward.x) == 1 || Mathf.RoundToInt(transform.forward.x) == -1)
+            //{
+            //    animator.SetFloat("DirX", transform.forward.z * move.z);
+            //    animator.SetFloat("DirY", transform.forward.x * move.x);
+            //}
+            //else
+            //{
+            //    animator.SetFloat("DirX", transform.forward.x * move.x);
+            //    animator.SetFloat("DirY", transform.forward.z * move.z);
+            //}
 
         }
 
