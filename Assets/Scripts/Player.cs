@@ -22,6 +22,7 @@ public partial class Player : Actor
 
     public WeaponInfo mainWeapon;
     public WeaponInfo subWeapon;
+    public WeaponInfo granadeWeapon;
 
     public WeaponInfo currentWeapon;
     public Transform rightWeaponPosition;
@@ -31,6 +32,7 @@ public partial class Player : Actor
         animator = GetComponentInChildren<Animator>();
         InitWeapon(mainWeapon);
         InitWeapon(subWeapon);
+        InitWeapon(granadeWeapon);
 
         ChangeWeapon(mainWeapon);
 
@@ -104,6 +106,9 @@ public partial class Player : Actor
     GameObject currentWeaponGo;
     private void ChangeWeapon(WeaponInfo _weaponInfo)
     {
+        if(currentWeapon != null && currentWeapon.type == _weaponInfo.type)
+            return;
+
         Destroy(currentWeaponGo);
         currentWeapon = _weaponInfo;
 
@@ -152,9 +157,20 @@ public partial class Player : Actor
             Fire();
             Roll();
             ReloadBullet();
-            if (Input.GetKeyDown(KeyCode.Tab))
-                ToggleChangeWeapon();
+            ChangeWeaponCommand();
         }
+    }
+
+    private void ChangeWeaponCommand()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+            ChangeWeapon(mainWeapon);
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            ChangeWeapon(subWeapon);
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            ChangeWeapon(granadeWeapon);
     }
 
     private void ReloadBullet()
@@ -180,13 +196,6 @@ public partial class Player : Actor
         stateType = StateType.Idle;
         BulletCountInClip = reloadCount;
         AllBulletCount -= reloadCount;
-    }
-
-    bool toggleWeapon = false;
-    void ToggleChangeWeapon()
-    {
-        ChangeWeapon(toggleWeapon == true ? mainWeapon : subWeapon);
-        toggleWeapon = !toggleWeapon;
     }
 
 

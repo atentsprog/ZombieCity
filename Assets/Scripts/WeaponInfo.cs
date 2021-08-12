@@ -13,6 +13,7 @@ public class WeaponInfo : MonoBehaviour
     {
         Gun,
         Melee, // 근접공격. 총알,...없음 
+        Granade, //수류탄
     }
     public WeaponType type;
     public int damage = 20;
