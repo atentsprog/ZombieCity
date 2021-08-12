@@ -4,46 +4,25 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    public ProjectileArc projectileArc;
-    public Transform firePoint;
-    public Cursor cursor;
-    public float speed = 20;
-    void Start()
+    public int power = 40;
+    public float damageArea = 5;
+    public float destroyDelay = 3;
+    public GameObject destroyEffect;
+    private IEnumerator Start()
     {
-        projectileArc = GetComponent<ProjectileArc>();
-        firePoint = transform;
-        cursor = FindObjectOfType<Cursor>();
-    }
-    void Update()
-    {
-        SetTargetWithSpeed(cursor.transform.position, speed);
-
-        // 수류탄 발사
-        if(Input.GetKeyDown(KeyCode.Mouse1))
+        yield return new WaitForSeconds(destroyDelay);
+        // 좀비들한테 데미지 주자.
+        var attackables = Physics.OverlapSphere(transform.position, damageArea, 1 << LayerMask.NameToLayer("Attackable"));
+        foreach (var item in attackables)
         {
-            //수류탄 생성.
-            //리지드 바디에 포스를 줘서 날리자.
-            var newGrenadeGo = Instantiate(grenadeGo, firePoint.position, Quaternion.identity);
-            newGrenadeGo.transform.forward = direction;
-            float degree = -currentAngle * Mathf.Rad2Deg;
-            newGrenadeGo.transform.Rotate(degree, 0, degree);
-            newGrenadeGo.GetComponent<Rigidbody>().velocity = newGrenadeGo.transform.forward * speed;
+            var moveDirection = transform.position - item.transform.position;
+            var zombie = item.GetComponent<Zombie>();
+            if (zombie)
+                zombie.TakeHit(power, moveDirection);
+            else
+                Debug.Log(item.name, item.transform);
         }
-    }
-
-    public GameObject grenadeGo;
-    public float currentAngle;
-    Vector3 direction;
-    public void SetTargetWithSpeed(Vector3 point, float speed)
-    {
-        direction = point - firePoint.position;
-        float yOffset = direction.y;
-        direction = Math3d.ProjectVectorOnPlane(Vector3.up, direction);
-        float distance = direction.magnitude;
-        float angle0, angle1;
-        bool targetInRange = ProjectileMath.LaunchAngle(speed, distance, yOffset, Physics.gravity.magnitude, out angle0, out angle1);
-        if (targetInRange)
-            currentAngle = angle0;
-        projectileArc.UpdateArc(speed, distance, Physics.gravity.magnitude, currentAngle, direction, targetInRange);
+        // 폭발 이펙트 표시
+        Instantiate(destroyEffect, transform.position, Quaternion.identity);
     }
 }
