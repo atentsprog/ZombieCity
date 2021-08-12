@@ -77,28 +77,7 @@ public partial class Player : Actor
             yield return new WaitForSeconds(1);
         }
     }
-    [ContextMenu("빌드")]
-    void Build()
-    {
-        GetComponentInChildren<RigBuilder>().Build();
-    }
-    [ContextMenu("정지")]
-    void Stop()
-    {
-        StopCoroutine(settingLookAtTargetCoHandle);
-    }
-
-    [ContextMenu("빌드")]
-    void TestBuild()
-    {
-        GetComponentInChildren<RigBuilder>().Build();
-    }
-
-    [ContextMenu("끄기")]
-    void End()
-    {
-        StopCoroutine(settingLookAtTargetCoHandle);
-    }
+   
     internal void RetargetingLookat()
     {
         print("RetargetingLookat");
