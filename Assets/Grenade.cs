@@ -1,18 +1,17 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Vector3 rotate;
     void Start()
     {
-        
+        GetComponent<Rigidbody>().AddTorque(rotate);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
+    //private void Update()
+    //{
         
-    }
+    //    transform.Rotate(rotate * Time.deltaTime);
+    //}
 }
