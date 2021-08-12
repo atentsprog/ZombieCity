@@ -38,7 +38,9 @@ public class ParticleMaster : MonoBehaviour {
         {
             foreach (var particle in particles)
             {
-                particle.enableEmission = false;
+                var emission = particle.emission;
+                emission.enabled = false;
+                //particle.enableEmission = false;
             }
         }
     }
@@ -47,7 +49,9 @@ public class ParticleMaster : MonoBehaviour {
     {
         foreach (var particle in particles)
         {
-            particle.enableEmission = true;
+            var emission = particle.emission;
+            emission.enabled = true;
+            //particle.enableEmission = true;
         }
     }
 
@@ -55,7 +59,9 @@ public class ParticleMaster : MonoBehaviour {
     {
         foreach (var particle in particles)
         {
-            particle.loop = emit;
+            var main = particle.main;
+            main.loop = emit;
+            //particle.loop = emit;
         }
     }
 

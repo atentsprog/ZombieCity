@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 4271977985621446601}
   - component: {fileID: 7040989810102746424}
   - component: {fileID: 108594327221302537}
+  - component: {fileID: 6587362261383712922}
   m_Layer: 7
   m_Name: NewSoldier
   m_TagString: Player
@@ -532,6 +533,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db18ee9ce21a634c9f0c3bc0da0df95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &6587362261383712922
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087371855731678539}
+  m_Enabled: 1
 --- !u!114 &8888870338153209498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,9 +862,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4287521489579498869, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
   m_PrefabInstance: {fileID: 7172033042981390299}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &515475164022549606 stripped
+--- !u!4 &7325537583610670297 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -1968218294861386819, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8781553548465394942, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
   m_PrefabInstance: {fileID: 7172033042981390299}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8330244905684559654 stripped
@@ -923,19 +932,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -7030748607437524586, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
   m_PrefabInstance: {fileID: 7172033042981390299}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3229791265983840233 stripped
+--- !u!4 &205727876638942549 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -3505304612340680654, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7012890102144737934, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
   m_PrefabInstance: {fileID: 7172033042981390299}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4521567864994620830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2506261946302045627, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
-  m_PrefabInstance: {fileID: 7172033042981390299}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &205727876638942549 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7012890102144737934, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
   m_PrefabInstance: {fileID: 7172033042981390299}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5290035229333550146 stripped
@@ -958,14 +962,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6327333622897732056, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
   m_PrefabInstance: {fileID: 7172033042981390299}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &7325537583610670297 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8781553548465394942, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
-  m_PrefabInstance: {fileID: 7172033042981390299}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2155818056388552830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -116197401912627291, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
+  m_PrefabInstance: {fileID: 7172033042981390299}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3229791265983840233 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3505304612340680654, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
   m_PrefabInstance: {fileID: 7172033042981390299}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &617547717223453585 stripped
@@ -991,6 +995,11 @@ Transform:
 --- !u!4 &980846143714770123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1291261700004431088, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
+  m_PrefabInstance: {fileID: 7172033042981390299}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &515475164022549606 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1968218294861386819, guid: fe4015ea2c9a18447a604aa6895b3999, type: 3}
   m_PrefabInstance: {fileID: 7172033042981390299}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1113377269545086295 stripped
