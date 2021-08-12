@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ProjectileArc : MonoBehaviour 
 {
@@ -16,9 +16,14 @@ public class ProjectileArc : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         initialColor = lineRenderer.material.color;
     }
-
+    //public Vector3 offsetPosition = new Vector3(0.3231883f, 0.5568783f, 0.1157932f);
     public void UpdateArc(float speed, float distance, float gravity, float angle, Vector3 direction, bool valid)
     {
+        var parent = transform.parent;
+        transform.parent = null;
+        transform.localScale = Vector3.one;
+        transform.parent = parent;
+
         Vector2[] arcPoints = ProjectileMath.ProjectileArcPoints(iterations, speed, distance, gravity, angle);        
         Vector3[] points3d = new Vector3[arcPoints.Length];
 

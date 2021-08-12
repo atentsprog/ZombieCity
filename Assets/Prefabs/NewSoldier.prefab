@@ -417,9 +417,9 @@ MonoBehaviour:
   stateType: 0
   mainWeapon: {fileID: 5242734277411140411, guid: 7420b29cb8191df4e8e39a98cd56d6bf, type: 3}
   subWeapon: {fileID: 712273017150554682, guid: c82fc0ca1e1f85340af5685e659a5cda, type: 3}
+  throwWeapon: {fileID: 8778441620507674285, guid: e9d4b9eea8ffe4140830003993701791, type: 3}
   currentWeapon: {fileID: 0}
   rightWeaponPosition: {fileID: 1113377269545086295}
-  testTr: {fileID: 8932351669010768230}
   rollingSpeedAC:
     serializedVersion: 2
     m_Curve:

@@ -12,26 +12,41 @@ public class GrenadeLauncher : MonoBehaviour
     {
         projectileArc = GetComponent<ProjectileArc>();
         firePoint = transform;
-        cursor = FindObjectOfType<Cursor>();
+        //cursor = FindObjectOfType<Cursor>();
     }
     void Update()
     {
         SetTargetWithSpeed(cursor.transform.position, speed);
 
-        // 수류탄 발사
-        if(Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            //수류탄 생성.
-            //리지드 바디에 포스를 줘서 날리자.
-            var newGrenadeGo = Instantiate(grenadeGo, firePoint.position, Quaternion.identity);
-            newGrenadeGo.transform.forward = direction;
-            float degree = -currentAngle * Mathf.Rad2Deg;
-            newGrenadeGo.transform.Rotate(degree, 0, degree);
-            Rigidbody _rigidbody = newGrenadeGo.GetComponent<Rigidbody>();
-            _rigidbody.velocity = newGrenadeGo.transform.forward * speed;
-            _rigidbody.AddTorque(Random.Range(0, torgue), Random.Range(0, torgue), Random.Range(0, torgue));
-        }
+        //// 수류탄 발사
+        //if (Input.GetKeyDown(KeyCode.Mouse1))
+        //    ThrowObject();
     }
+
+    public void ThrowObject()
+    {
+        //수류탄 생성.
+        //리지드 바디에 포스를 줘서 날리자.
+        var newGrenadeGo = Instantiate(grenadeGo, firePoint.position, Quaternion.identity);
+        newGrenadeGo.transform.forward = direction;
+        float degree = -currentAngle * Mathf.Rad2Deg;
+        newGrenadeGo.transform.Rotate(degree, 0, degree);
+        Rigidbody _rigidbody = newGrenadeGo.GetComponent<Rigidbody>();
+        _rigidbody.velocity = newGrenadeGo.transform.forward * speed;
+        _rigidbody.AddTorque(Random.Range(0, torgue), Random.Range(0, torgue), Random.Range(0, torgue));
+
+        StartCoroutine(ProjectileArcOffAndOnCo());
+    }
+
+    public float offTime = 0.5f; // 다시 사용하는 딜레이 시간 만큼 꺼주자.
+    private IEnumerator ProjectileArcOffAndOnCo()
+    {
+        var lineRenderer = GetComponentInChildren<LineRenderer>(); 
+        lineRenderer.enabled = false;
+        yield return new WaitForSeconds(offTime);
+        lineRenderer.enabled = true;
+    }
+
     public float torgue = 100;
 
     public GameObject grenadeGo;

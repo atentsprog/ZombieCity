@@ -52,6 +52,10 @@ public partial class Player : Actor
                             // 무기의 컬라이더를 활성화 하자. 
                             currentWeapon.StartCoroutine(MeleeAttackCo());
                             break;
+
+                        case WeaponInfo.WeaponType.Throw:
+                            currentWeapon.StartCoroutine(ThrowAttackCo());
+                            break;
                     }
                 }
             }
@@ -70,6 +74,13 @@ public partial class Player : Actor
         {
             Endfiring();
         }
+    }
+
+
+    private IEnumerator ThrowAttackCo()
+    {
+        currentWeapon.GetComponentInChildren<GrenadeLauncher>().ThrowObject();
+        yield return null;
     }
 
     [SerializeField] float reloadAlertDelay = 1f;

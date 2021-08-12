@@ -13,7 +13,7 @@ public class WeaponInfo : MonoBehaviour
     {
         Gun,
         Melee, // 근접공격. 총알,...없음 
-        Throw,  // 수류탄, 연망탄,..
+        Throw,  // 수류탄, 연막탄,..
     }
     public WeaponType type;
     public int damage = 20;
@@ -35,6 +35,9 @@ public class WeaponInfo : MonoBehaviour
         int reloadCount = Math.Min(allBulletCount, maxBulletCountInClip);
         allBulletCount -= reloadCount;
         bulletCountInClip = reloadCount;
+         
+        if (type == WeaponType.Throw)
+            GetComponentInChildren<GrenadeLauncher>().offTime = delay;
     }
 
     [Header("총")]
