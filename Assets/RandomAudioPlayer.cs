@@ -10,10 +10,14 @@ public class RandomAudioPlayer : MonoBehaviour
     {
         public AudioClip clip;
         public float ratio;
+        public float minVolume = 1f;
+        public float maxVolume = 1;
     }
     public List<AudioInfo> audios;
 
     public float maxRandomTime = 30;
+    public float gMinVolume = 0.5f;
+    public float gMaxVolume = 1;
 
     IEnumerator Start()
     {
@@ -21,11 +25,14 @@ public class RandomAudioPlayer : MonoBehaviour
 
         while(true)
         {
-            audioSource.clip = audios.OrderBy(x => Random.Range(0,x.ratio))
-                                    .Last().clip;
+            yield return new WaitForSeconds(Random.Range(0, maxRandomTime));
+
+            AudioInfo info = audios.OrderBy(x => Random.Range(0, x.ratio)).Last();
+            audioSource.volume = Random.Range(info.minVolume * gMinVolume, info.maxVolume * gMaxVolume);
+            audioSource.clip = info.clip;
             audioSource.Play();
 
-            yield return new WaitForSeconds(audioSource.clip.length + Random.Range(0, maxRandomTime));
+            yield return new WaitForSeconds(audioSource.clip.length);
         }
     }
 }
