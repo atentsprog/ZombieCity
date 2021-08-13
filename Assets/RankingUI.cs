@@ -2,31 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class Data<T>
+{
+    public T data;
+}
 
+[System.Serializable]
 public class PlayerPrefsData<T>
 {
+    public T data;
+
     public PlayerPrefsData(string _key)
     {
         key = _key;
+        LoadData();
     }
 
     string key;
-    public T LoadData()
+    public void LoadData()
     {
-        T record = JsonUtility.FromJson<T>(PlayerPrefs.GetString(key));
-        if (record == null)
+        data = JsonUtility.FromJson<T>(PlayerPrefs.GetString(key));
+        if (data == null)
         {
             Debug.LogWarning("record == null");
-            return default(T);
+            return;
         }
 
         Debug.LogWarning("Load Complete");
-        return record;
     }
 
     public void SaveData()
     {
-        string json = JsonUtility.ToJson(this);
+        string json = JsonUtility.ToJson(data);
 
         try
         {
@@ -47,25 +55,22 @@ public class RankInfo
     public string stringValue;
     public int score;
 }
+
 [System.Serializable]
-public class Record : PlayerPrefsData<Record>
+public class RankInfoData
 {
     public List<RankInfo> ranking = new List<RankInfo>();
-
-    public Record(string key):base(key)
-    {
-        Record savedValue = LoadData();
-        ranking = savedValue.ranking;
-    }
+    public int myInt;
+    public string myString;
 }
 
 public class RankingUI : MonoBehaviour
 {
-    public Record record;
+    public PlayerPrefsData<RankInfoData> record;
     // Start is called before the first frame update
     void Start()
     {
-        record = new Record("Record");
+        record = new PlayerPrefsData<RankInfoData>("Record");
     }
 
     // Update is called once per frame
@@ -76,5 +81,14 @@ public class RankingUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F8))
             record.LoadData();
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            var ranking = record.data.ranking;
+            foreach (var item in ranking)
+                print(item);
+
+            print(record.data.myInt);
+        }
     }
 }
