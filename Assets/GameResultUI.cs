@@ -43,7 +43,7 @@ public class GameResultUI : SingletonMonoBehavior<GameResultUI>
 
     private void OnClickRanking()
     {
-        throw new NotImplementedException();
+        RankingUI.Instance.ShowRanking(int.Parse(youScoreNumber.text));
     }
 
     internal void ShowResult(int score, int highScore)
