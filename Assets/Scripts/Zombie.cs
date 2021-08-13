@@ -12,6 +12,10 @@ public class Zombie : Actor
     public Transform target;
     NavMeshAgent agent;
     float originalSpeed;
+    private void OnDestroy()
+    {
+        Zombies.Remove(this);
+    }
     IEnumerator Start()
     {
         Zombies.Add(this);
