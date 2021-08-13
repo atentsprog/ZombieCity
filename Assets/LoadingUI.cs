@@ -48,6 +48,6 @@ public class LoadingUI : MonoBehaviour
             GetComponent<CanvasGroup>().alpha = endTime - Time.time;
             yield return null;
         }
-        gameObject.SetActive(false);
+        Destroy(transform.root.gameObject);
     }
 }
