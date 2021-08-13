@@ -40,7 +40,15 @@ public class GameResultUI : SingletonMonoBehavior<GameResultUI>
     private void OnClickHome()
     {
         Close();
+        InstantiateHelper.IngSceneLoad = true;
         SceneManager.LoadScene("Title");
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+    }
+
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        InstantiateHelper.IngSceneLoad = false;
+        SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
     }
 
     private void OnClickRanking()

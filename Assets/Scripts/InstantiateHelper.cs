@@ -23,15 +23,21 @@ public class InstantiateHelper : MonoBehaviour
     }
     public EventType eventType = EventType.OnDestroy;
 
+
+    static public bool IngSceneLoad = false;
     private void OnDestroy()
     {
         if (eventType != EventType.OnDestroy)
             return;
 
         if (ApplicationQuit)
-            return; 
+            return;
 
-        InstantiateObjects();
+        if (IngSceneLoad)
+            return;
+
+        InstantiateObjects(); 
+
     }
 
     private void OnEnable()
@@ -40,8 +46,11 @@ public class InstantiateHelper : MonoBehaviour
             return;
         InstantiateObjects();
     }
+
+
     private void OnDisable()
     {
+        //UnregistEvent();
         if (eventType != EventType.OnDisable)
             return;
         InstantiateObjects();
@@ -49,6 +58,7 @@ public class InstantiateHelper : MonoBehaviour
 
     void InstantiateObjects()
     {
+        print($"{eventType}: 생성");
         // 보상 아이템 생성
         foreach (var item in dropItems)
         {
