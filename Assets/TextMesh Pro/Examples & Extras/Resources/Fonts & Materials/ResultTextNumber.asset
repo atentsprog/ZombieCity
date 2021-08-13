@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Bangers SDF
+  m_Name: ResultTextNumber
   m_EditorClassIdentifier: 
-  hashCode: 2134875903
+  hashCode: -1540291547
   material: {fileID: 2100000}
-  materialHashCode: -2079879681
+  materialHashCode: 156850149
   m_Version: 1.1.0
   m_SourceFontFileGUID: 3c8081ead08fbb9408692214b444c1c5
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 3c8081ead08fbb9408692214b444c1c5, type: 3}

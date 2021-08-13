@@ -6,7 +6,9 @@ using UnityEngine;
 public class StageManager : SingletonMonoBehavior<StageManager>
 {
     public SaveInt highScore;
-    public int score;
+    [SerializeField] int score;
+    public int Score => score;
+
     public SaveInt gold;
 
     new private void Awake()

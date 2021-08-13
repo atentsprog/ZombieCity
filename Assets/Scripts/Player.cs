@@ -164,6 +164,13 @@ public partial class Player : Actor
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F5))
+            StageManager.Instance.AddScore(100);
+
+        if (Input.GetKeyDown(KeyCode.F6))
+            GameResultUI.Instance.ShowResult(StageManager.Instance.Score, 1500);
+
+
         if (Time.deltaTime == 0)
             return;
 
@@ -178,8 +185,6 @@ public partial class Player : Actor
             Roll();
             ReloadBullet();
             ChangeWeapon();
-            //if (Input.GetKeyDown(KeyCode.Tab))
-            //    ToggleChangeWeapon();
         }
     }
 
@@ -349,6 +354,9 @@ public partial class Player : Actor
         GetComponent<Collider>().enabled = false;
         yield return new WaitForSeconds(diePreDelayTime);
         animator.SetTrigger("Die");
+
+        //게임 결과 UI 표시하자.
+        GameResultUI.Instance.ShowResult(StageManager.Instance.Score, StageManager.Instance.highScore);
     }
 
     public float speed = 5;
