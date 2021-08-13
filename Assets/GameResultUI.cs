@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameResultUI : SingletonMonoBehavior<GameResultUI>
@@ -23,7 +24,28 @@ public class GameResultUI : SingletonMonoBehavior<GameResultUI>
         youScoreNumber = transform.Find("YouScoreNumber").GetComponent<TextMeshProUGUI>();
         starScore = transform.Find("StarScore").GetComponent<Image>();
         bestScoreNumber = transform.Find("BestScoreNumber").GetComponent<TextMeshProUGUI>();
+
+        transform.Find("Buttons/Restart").GetComponent<Button>().AddListener(this, OnClickRestart);
+        transform.Find("Buttons/Ranking").GetComponent<Button>().AddListener(this, OnClickRanking);
+        transform.Find("Buttons/Home").GetComponent<Button>().AddListener(this, OnClickHome);
     }
+
+    private void OnClickRestart()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Stage1");
+    }
+
+    private void OnClickHome()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    private void OnClickRanking()
+    {
+        throw new NotImplementedException();
+    }
+
     internal void ShowResult(int score, int highScore)
     {
         base.Show();
