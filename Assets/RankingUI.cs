@@ -49,7 +49,9 @@ public class RankingData : PlayerPrefsData<RankingData>
     {
         var savedData = LoadData();
         if (savedData != null)
+        {
             ranking = savedData.ranking;
+        }
     }
     public List<int> ranking = new List<int>();
 }
@@ -70,7 +72,8 @@ public class RankingUI : SingletonMonoBehavior<RankingUI>
     protected override void OnInit()
     {
         baseItem = GetComponentInChildren<RankingUIItem>();
-        rankingData = new RankingData("1RankingData");
+        baseItem.gameObject.SetActive(false);
+        rankingData = new RankingData("NewRanking");
     }
 
     public int maxCount = 10;
@@ -82,7 +85,26 @@ public class RankingUI : SingletonMonoBehavior<RankingUI>
 
         // -> 10개 이상일때 마지막껄 빼고 
         // 10개 미만이면 더하기만 하자.
-        if(rankingData.ranking.Count >= 10)
+        InsertScore(currentScore);
+
+        ShowRankingUI();
+    }
+
+    private void ShowRankingUI()
+    {
+        baseItem.gameObject.SetActive(true);
+        foreach (var item in rankingData.ranking)
+        {
+            var newItem = Instantiate(baseItem, baseItem.transform.parent);
+            newItem.SetData(item);
+            ChildObject.Add(newItem.gameObject);
+        }
+        baseItem.gameObject.SetActive(false);
+    }
+
+    private void InsertScore(int currentScore)
+    {
+        if (rankingData.ranking.Count >= 10)
         {
             int minScore = rankingData.ranking[rankingData.ranking.Count - 1];
 
@@ -91,7 +113,7 @@ public class RankingUI : SingletonMonoBehavior<RankingUI>
                 rankingData.ranking.Add(currentScore);
                 rankingData.ranking.Sort();
                 rankingData.ranking.Reverse(); // 정렬된걸 뒤집는다.
-                rankingData.ranking.RemoveAt(rankingData.ranking.Count -1);
+                rankingData.ranking.RemoveAt(rankingData.ranking.Count - 1);
                 rankingData.SaveData();
             }
         }

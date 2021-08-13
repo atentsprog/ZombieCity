@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,10 +11,15 @@ public class RankingUIItem : MonoBehaviour
     Image icon;
     Button button;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         scoreText = transform.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         icon = transform.Find("Icon").GetComponent<Image>();
         button = transform.Find("Button").GetComponent<Button>();
+    }
+
+    internal void SetData(int score)
+    {
+        scoreText.text = score.ToNumber();
     }
 }
